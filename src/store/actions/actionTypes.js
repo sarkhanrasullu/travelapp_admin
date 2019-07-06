@@ -1,0 +1,3 @@
+export const SET_LIST = "SET_LIST"
+export const SET_SELECTED_ENTITY= "SET_SELECTED_ENTITY"
+export const LOAD_LIST = "LOAD_LIST"
