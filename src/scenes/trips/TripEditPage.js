@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { TableColumn } from '../../components/datatable/DataTableTypes';
-import EntityEditPage from '../entityeditpage/EntityEditPage';
+import EntityEditPage from '../../components/entityeditpage/EntityEditPage';
 
 const formDataFields = [
     new TableColumn("id"),

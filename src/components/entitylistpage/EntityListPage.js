@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
-import DataTableComponent from '../../components/datatable/DataTableComponent';
+import DataTableComponent from '../datatable/DataTableComponent';
 import * as actions from '../../store/actions/index';
 import { connect } from 'react-redux';
-import SearchPanel from './SearchPanel';
+import DynamicForm from '../dynamic_form/DynamicForm';
 
 
 class EntityListPage extends Component {
@@ -11,21 +11,25 @@ class EntityListPage extends Component {
     }
     render() {
         const {list, endpoint} = this.props;
-        const {columns,photoDataFields,dateDataFields,ignoreDataFields} = this.props.tableProps;
-        const {searchProps} = this.props;
+        const {columns, photoDataFields, dateDataFields, ignoreDataFields} = this.props.tableProps;
         return (
           <React.Fragment>
-            <SearchPanel 
-              searchDataFields={searchProps.searchDataFields}
-              />
+            <DynamicForm 
+                sections={
+                  [
+                    { 
+                      items: this.props.searchDataFields
+                    }
+                  ]
+                }
+                submit={{label:"Search", action:null}}/>
             <DataTableComponent 
                 endpoint={endpoint}
                 data={list}  
                 columns={columns}
                 photoDataFields={photoDataFields}
                 dateDataFields={dateDataFields}
-                ignoreDataFields={ignoreDataFields}
-              />
+                ignoreDataFields={ignoreDataFields}/>
               </React.Fragment>
         )
     }

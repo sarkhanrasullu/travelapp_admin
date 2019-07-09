@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import EntityListPage from '../entitylistpage/EntityListPage';
+import EntityListPage from '../../components/entitylistpage/EntityListPage';
 import { TableColumn } from '../../components/datatable/DataTableTypes';
 
 const columns = [
@@ -20,32 +20,12 @@ export default class UserListPage extends Component {
         return (
                 <EntityListPage
                     endpoint="users"
-                    searchProps={
-                        {
-                            searchDataFields:[
-                                {
-                                    label:"id",
-                                    fieldName:"id"
-                                },
-                                {
-                                    label:"name",
-                                    fieldName:"name"
-                                },
-                                {
-                                    label:"surname",
-                                    fieldName:"surname"
-                                },
-                                {
-                                    label:"email",
-                                    fieldName:"email"
-                                },
-                                {
-                                    label:"phone",
-                                    fieldName:"phone"
-                                }
-                            ]
-                        }
-                    }
+                    searchDataFields={[
+                        new TableColumn("name"),
+                        new TableColumn("surname"),
+                        new TableColumn("email"),
+                        new TableColumn("phone")
+                    ]}
                     tableProps= {
                         {
                             columns: columns,

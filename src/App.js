@@ -13,6 +13,7 @@ import DriverEditPage from "./scenes/drivers/DriverEditPage";
 import GuideEditPage from "./scenes/guides/GuideEditPage";
 import TripListPage from "./scenes/trips/TripListPage";
 import TripEditPage from "./scenes/trips/TripEditPage";
+import Login from "./scenes/login/Login";
 
 class App extends Component {
   render() {
@@ -20,6 +21,7 @@ class App extends Component {
       <MainPageContainer>
          <Switch>
             <Route exact path="/" component={UserListPage} />
+            <Route exact path="/login" component={Login} />
             <Route exact path="/users" component={UserListPage} />
             <Route exact path="/users/:entityId" component={UserEditPage} />
             <Route exact path="/drivers" component={DriverListPage} />

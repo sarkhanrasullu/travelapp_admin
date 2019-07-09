@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { TableColumn } from '../../components/datatable/DataTableTypes';
-import EntityEditPage from '../entityeditpage/EntityEditPage';
+import EntityEditPage from '../../components/entityeditpage/EntityEditPage';
 
 const formDataFields = [
     // new TableColumn("id","id"),
@@ -8,24 +8,16 @@ const formDataFields = [
     new TableColumn("surname"),
     new TableColumn("email"),
     new TableColumn("phone"),
-    new TableColumn("thumbnail"),
-    new TableColumn("lastchangedate")
+    new TableColumn("thumbnail","image"),
+    new TableColumn("lastchangedate", "date")
 ];
-const photoDataFields = ["driverLicenseFront","driverLicenseBack","thumbnail"];
-const dateDataFields = ["lastchangedate"];
 
 class UserEditPage extends Component {
     render() {
         return (
                 <EntityEditPage
                     endpoint="users"
-                    formProps= {
-                        {
-                            photoDataFields: photoDataFields,
-                            dateDataFields: dateDataFields,
-                            formDataFields: formDataFields
-                        }
-                    }
+                    formDataFields={formDataFields}
                 />
         )
     }

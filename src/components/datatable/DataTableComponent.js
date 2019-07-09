@@ -14,9 +14,11 @@ export default class DataTableComponent extends Component {
     renderHeader(){
         const {columns, ignoreDataFields} = this.props; 
         const result= columns.map((column, index)=>{
-            if(ignoreDataFields.indexOf(column.field)==-1){
+            if(ignoreDataFields.indexOf(column.field)===-1){
                 return <th key={"h"+index}>{column.label}</th>
             }
+
+            return null;
         });
         result.push(
             <th key={"hActions"}>Actions</th>

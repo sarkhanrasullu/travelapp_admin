@@ -36,11 +36,11 @@ export default class StateUtil {
             let data = StateUtil.get(row, dataField);
             if(data===null) return "";
             let result = data;
-            if(ignoreDataFields.indexOf(dataField)>-1){
+            if(ignoreDataFields && ignoreDataFields.indexOf(dataField)>-1){
                 return null;
-            }else if(photoDataFields.indexOf(dataField)>-1){
+            }else if(photoDataFields && photoDataFields.indexOf(dataField)>-1){
                 result = CommonUtil.imageFormatter(data);
-            }else if(dateDataFields.indexOf(dataField)>-1){
+            }else if(dateDataFields && dateDataFields.indexOf(dataField)>-1){
                 result = CommonUtil.formatDate(data);
             }else if( (typeof data) === "object"){
                 const objectKeys = Object.keys(data);
@@ -56,10 +56,14 @@ export default class StateUtil {
 
         static renderFormData(row, dataField, ignoreDataFields, photoDataFields, dateDataFields){
             if(dataField.field==="empty") return null;
-            let result = StateUtil.renderData(row, dataField.field, ignoreDataFields, photoDataFields, dateDataFields);
+            
+            let data = StateUtil.renderData(row, dataField.field, ignoreDataFields, photoDataFields, dateDataFields);
 
-            if(photoDataFields.indexOf(dataField.field)===-1){
-                result = StateUtil.generateFormInput(dataField, result);
+            let result = null;
+            if(dataField.type==="image"){
+                result = null;
+            }else {
+                result = StateUtil.generateFormInput(dataField, data);
             }
             return result;
         }

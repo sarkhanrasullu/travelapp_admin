@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import EntityListPage from '../entitylistpage/EntityListPage';
+import EntityListPage from '../../components/entitylistpage/EntityListPage';
 import { TableColumn } from '../../components/datatable/DataTableTypes';
 
 const columns =
