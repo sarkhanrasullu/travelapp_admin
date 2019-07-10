@@ -8,22 +8,19 @@ import StateUtil from "../../utils/StateUtil";
 class DynamicForm extends Component {
   handleSubmitBtn() {}
  
+ 
   renderItem = (item)=>{
-      console.log(item);
-      const ignoreDataFields = this.props.formProps ? this.props.formProps.ignoreDataFields:null;
-      const photoDataFields = this.props.formProps ? this.props.formProps.photoDataFields:null;
-      const dateDataFields = this.props.formProps? this.props.formProps.dateDataFields:null;
-      return StateUtil.renderFormData(this.props.selectedEntity, item, ignoreDataFields, photoDataFields, dateDataFields);
+      return StateUtil.renderFormData(this.props.selectedEntity, item);
   }
 
   renderSections = ()=>{
     const {sections} = this.props;
-    const sectionsComponent =  sections.map((section)=>{
+    const sectionsComponent =  sections.map((section, index)=>{
         const items = section.items;
         const itemsComponent = items.map((item, index)=>{
                 return <MDBCol md="6" key={index}>{this.renderItem(item)}</MDBCol>; 
         });
-        return <MDBRow>{itemsComponent}</MDBRow>;
+        return <MDBRow key={index}>{itemsComponent}</MDBRow>;
       });
 
       return sectionsComponent;
@@ -48,7 +45,7 @@ class DynamicForm extends Component {
   }
 
   render() {
-    console.log(this.props.selectedEntity);
+    console.log(this.props.selectedEntity)
     const sectionsComponent = this.renderSections();
     const submitComponent = this.renderSubmitButtons();
     return (

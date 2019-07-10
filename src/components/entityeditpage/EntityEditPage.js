@@ -24,6 +24,9 @@ class EntityEditPage extends Component {
     
     return (
       <MDBContainer style={{ margin: "auto"}}>
+        <MDBRow>
+        <MDBCol md={3}></MDBCol>
+        <MDBCol md={6}>
             <DynamicForm
               component={this}
               selectedEntity={this.props.selectedEntity}
@@ -32,17 +35,20 @@ class EntityEditPage extends Component {
                   items: this.props.formDataFields
                 }
               ]}
-              action={{
+              submit={{
                 label: "Save",
                 action: this.handleSubmitBtn
               }}
             />
+            </MDBCol>
+          </MDBRow>
       </MDBContainer>
     );
   }
 }
 
 const mapStateToProps = state => {
+  console.log(state)
   return {
     selectedEntity: state.entity.selectedEntity
   };

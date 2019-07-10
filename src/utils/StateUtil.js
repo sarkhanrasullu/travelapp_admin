@@ -1,6 +1,7 @@
 import CommonUtil from "./CommonUtil";
 import React, { Component } from 'react'
 import {MDBInput} from 'mdbreact'
+import Image from "../components/image/Image";
 
 export default class StateUtil {
         static get = (state, name) => {
@@ -32,15 +33,15 @@ export default class StateUtil {
             }
         };
 
-        static renderData(row, dataField, ignoreDataFields, photoDataFields, dateDataFields){
-            let data = StateUtil.get(row, dataField);
+        static renderData(row, dataField){
+            let data = StateUtil.get(row, dataField.field); 
             if(data===null) return "";
             let result = data;
-            if(ignoreDataFields && ignoreDataFields.indexOf(dataField)>-1){
+            if(dataField.type==="empty"){
                 return null;
-            }else if(photoDataFields && photoDataFields.indexOf(dataField)>-1){
+            }else if(dataField.type==="image"){
                 result = CommonUtil.imageFormatter(data);
-            }else if(dateDataFields && dateDataFields.indexOf(dataField)>-1){
+            }else if(dataField.type==="date"){
                 result = CommonUtil.formatDate(data);
             }else if( (typeof data) === "object"){
                 const objectKeys = Object.keys(data);
@@ -54,14 +55,13 @@ export default class StateUtil {
         }
 
 
-        static renderFormData(row, dataField, ignoreDataFields, photoDataFields, dateDataFields){
-            if(dataField.field==="empty") return null;
+        static renderFormData(row, dataField){
+            if(dataField.type==="empty") return null;
             
-            let data = StateUtil.renderData(row, dataField.field, ignoreDataFields, photoDataFields, dateDataFields);
-
+            let data = StateUtil.renderData(row, dataField);
             let result = null;
-            if(dataField.type==="image"){
-                result = null;
+            if(dataField.type==="image" || dataField.type==="image_base64"){
+                result = StateUtil.generateImageInput(dataField, data);
             }else {
                 result = StateUtil.generateFormInput(dataField, data);
             }
@@ -80,6 +80,19 @@ export default class StateUtil {
                             error="wrong"
                             success="right"
                         />
+        }
+
+        static generateImageInput(dataField, value){
+            console.log('value'+value);
+            let result = null;
+            if(value===null || !value || value.trim().length===0){
+                result = "/upload.svg";
+            } else {
+                if(dataField.type==="image_base64"){
+                    result = "data:image/png;base64,"+value;
+                }
+            } 
+            return <Image image={result}/>;
         }
 
 }

@@ -14,6 +14,8 @@ import GuideEditPage from "./scenes/guides/GuideEditPage";
 import TripListPage from "./scenes/trips/TripListPage";
 import TripEditPage from "./scenes/trips/TripEditPage";
 import Login from "./scenes/login/Login";
+import FeedbackListPage from "./scenes/feedbacks/FeedbackListPage";
+import FeedbackEditPage from "./scenes/feedbacks/FeedbackEditPage";
 
 class App extends Component {
   render() {
@@ -30,6 +32,8 @@ class App extends Component {
             <Route exact path="/guides/:entityId" component={GuideEditPage} />
             <Route exact path="/trips/" component={TripListPage} />
             <Route exact path="/trips/:entityId" component={TripEditPage} />
+            <Route exact path="/feedbacks/" component={FeedbackListPage} />
+            <Route exact path="/feedbacks/:entityId" component={FeedbackEditPage} />
             <Route component={UserListPage} />
           </Switch>       
       </MainPageContainer>        

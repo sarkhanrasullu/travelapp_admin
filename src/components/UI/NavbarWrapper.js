@@ -67,7 +67,7 @@ render() {
               <MDBNavLink to="/trips">Trips</MDBNavLink>
             </MDBNavItem>
             <MDBNavItem>
-              <MDBNavLink to="/feedback">Feedbacks</MDBNavLink>
+              <MDBNavLink to="/feedbacks">Feedbacks</MDBNavLink>
             </MDBNavItem>
             <MDBNavItem>
               <MDBNavLink to="/helps">Help Requests</MDBNavLink>

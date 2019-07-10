@@ -4,7 +4,7 @@ import PaginationWrapper from '../UI/PaginationWrapper';
 import StateUtil from '../../utils/StateUtil';
 
 export default class DataTableComponent extends Component {
-
+ 
     render() {
         const {data, columns} = this.props; 
         if(!data || data.length===0||!columns || columns.length===0) return null;
@@ -12,28 +12,39 @@ export default class DataTableComponent extends Component {
     }
 
     renderHeader(){
-        const {columns, ignoreDataFields} = this.props; 
+        const {columns} = this.props; 
         const result= columns.map((column, index)=>{
-            if(ignoreDataFields.indexOf(column.field)===-1){
+            if(column.type!=="empty"){
                 return <th key={"h"+index}>{column.label}</th>
             }
 
             return null;
         });
         result.push(
-            <th key={"hActions"}>Actions</th>
+            <th style={{width:60}} key={"edit"}></th>
+        )
+        result.push(
+            <th style={{width:60}} key={"remove"}></th>
         )
          
        return (<tr>{result}</tr>);
     }
 
-    pushActions(row, rowData, key){
+    appendEdit(row, rowData){
         row.push(
-            <td key={key}>
+            <td key={"edit"}>
                 <MDBNavLink to={this.props.endpoint+"/"+rowData.id}>
-                    <MDBBtn color="primary">
-                        <MDBIcon far icon="edit" />
-                    </MDBBtn>
+                    <MDBIcon size="lg" far icon="edit" />
+                </MDBNavLink>
+            </td>
+        )
+    }
+
+    appendRemove(row, rowData){
+        row.push(
+            <td key={"remove"}>
+                <MDBNavLink to={this.props.endpoint+"/"+rowData.id}>
+                    <MDBIcon size="lg" far icon="trash-alt" />
                 </MDBNavLink>
             </td>
         )
@@ -41,14 +52,14 @@ export default class DataTableComponent extends Component {
 
     renderBody(){
         const {data, columns} = this.props; 
-        const {ignoreDataFields, photoDataFields, dateDataFields} = this.props; 
         const result= data.map((row, index)=>{
             const resRow = columns.map((column, index)=>{
-                let data = StateUtil.renderData(row, column.field, ignoreDataFields, photoDataFields, dateDataFields);
-                if(data===null) return;
-                return <td key={"btd"+index}>{data}</td>
+                let data = StateUtil.renderData(row, column);
+                if(data===null) return null;
+                return <td style={{height:10}} key={"btd"+index}>{data}</td>
             });
-            this.pushActions(resRow, row, "btdActions");
+            this.appendEdit(resRow, row);
+            this.appendRemove(resRow, row);
             return (<tr key={"btr"+index}>{resRow}</tr>)
         });
         
@@ -60,7 +71,7 @@ export default class DataTableComponent extends Component {
        const result = (
            <React.Fragment>
                <PaginationWrapper/>
-                <MDBTable bordered>
+                <MDBTable bordered className={"table-sm"}>
                         <MDBTableHead>
                             {this.renderHeader()}
                         </MDBTableHead>

@@ -11,7 +11,7 @@ class EntityListPage extends Component {
     }
     render() {
         const {list, endpoint} = this.props;
-        const {columns, photoDataFields, dateDataFields, ignoreDataFields} = this.props.tableProps;
+        const {columns} = this.props.tableProps;
         return (
           <React.Fragment>
             <DynamicForm 
@@ -27,9 +27,7 @@ class EntityListPage extends Component {
                 endpoint={endpoint}
                 data={list}  
                 columns={columns}
-                photoDataFields={photoDataFields}
-                dateDataFields={dateDataFields}
-                ignoreDataFields={ignoreDataFields}/>
+                />
               </React.Fragment>
         )
     }
@@ -38,7 +36,7 @@ class EntityListPage extends Component {
 const mapStateToProps = (state) => {  
   return {
       list: state.entity.list
-  }
+  } 
 }
 
 const mapDispatchToProps = (dispatch) => {
