@@ -11,6 +11,7 @@ import allReducers from './store/reducers/index'
 import {Provider} from 'react-redux'
 import {createStore, applyMiddleware, compose} from 'redux'
 import thunk from 'redux-thunk'
+import Api from './services/CommonService';
 
 require('dotenv/config');
 
@@ -23,7 +24,7 @@ const store = createStore(allReducers, composeEnhancers(
 ReactDOM.render(
         <Provider store={store}>
             <BrowserRouter>
-                <App />
+                <App/>
             </BrowserRouter>
         </Provider>, 
         document.getElementById('root')

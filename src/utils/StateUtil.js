@@ -2,6 +2,7 @@ import CommonUtil from "./CommonUtil";
 import React, { Component } from 'react'
 import {MDBInput} from 'mdbreact'
 import Image from "../components/image/Image";
+import FormInput from "../components/forminput/FormInput";
 
 export default class StateUtil {
         static get = (state, name) => {
@@ -17,6 +18,9 @@ export default class StateUtil {
             var len = pList.length;
             for(var i = 0; i < len-1; i++) {
                 var elem = pList[i];
+                if(!schema[elem]){
+                    schema[elem] = {};
+                }
                 schema = schema[elem];
             }
             var lastOne = pList[len-1];
@@ -54,45 +58,9 @@ export default class StateUtil {
             return result;
         }
 
-
-        static renderFormData(row, dataField){
-            if(dataField.type==="empty") return null;
-            
-            let data = StateUtil.renderData(row, dataField);
-            let result = null;
-            if(dataField.type==="image" || dataField.type==="image_base64"){
-                result = StateUtil.generateImageInput(dataField, data);
-            }else {
-                result = StateUtil.generateFormInput(dataField, data);
-            }
-            return result;
-        }
-
-
-        static generateFormInput(dataField, value){
-            return <MDBInput
-                            label={dataField.label}
-                            value={value}
-                            // icon="envelope"
-                            group
-                            // type="email"
-                            validate
-                            error="wrong"
-                            success="right"
-                        />
-        }
-
-        static generateImageInput(dataField, value){
-            console.log('value'+value);
-            let result = null;
-            if(value===null || !value || value.trim().length===0){
-                result = "/upload.svg";
-            } else {
-                if(dataField.type==="image_base64"){
-                    result = "data:image/png;base64,"+value;
-                }
-            } 
-            return <Image image={result}/>;
-        }
+        static getFromObj = (obj, name) => {
+            const p = name;
+            return p.split(".").reduce((xs, x) =>xs&&xs[x]||null, obj)
+        } 
 
 }

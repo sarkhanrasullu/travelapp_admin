@@ -1,16 +1,65 @@
 import React, { Component } from "react";
-import { MDBInput, MDBBtn, MDBRow, MDBCol, MDBContainer } from "mdbreact";
+import { MDBBtn, MDBRow, MDBCol, MDBContainer } from "mdbreact";
 import * as actions from "../../store/actions/index";
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
+import FormInput from '../forminput/FormInput';
 import StateUtil from "../../utils/StateUtil";
 
 class DynamicForm extends Component {
-  handleSubmitBtn() {}
  
+  state = {
+    target:{
+      validate:()=>this.validate(),
+      validation:{}
+    }
+  }
+
+  validate=()=>{
+    const state = this.state;
+    const validation = state.target.validation;
+  
+    let result = true;
+    
+    const {sections} = this.props;
+    sections.forEach((section)=>{
+       const {items} = section;
+       items.forEach((item)=>{
+         if(!item.name) return;
+         validation[item.name] = false;
+         if(!item.optional){
+           const data = StateUtil.getFromObj(state.target, item.name);
+           if(!data || (data+"").trim().length===0){
+             validation[item.name] = true;
+             result = false;
+           }
+         }
+       })
+    })
+    console.log(validation);
+    state.target.validation = validation;
+    this.setState(state);
+    return result;
+}
  
-  renderItem = (item)=>{
-      return StateUtil.renderFormData(this.props.selectedEntity, item);
+  renderItem = (item, index)=>{
+     const {readOnly} = this.props;
+     const validation = readOnly? {}:this.state.target.validation;
+      return (
+        <FormInput 
+                        component         ={this} 
+                        name              ={"target."+item.name} 
+                        secure            ={item.secure}
+                        optional          ={item.optional}
+                        customComponent   ={item.customComponent}
+                        type              ={item.type} 
+                        label             ={item.label} 
+                        error             ={validation[item.name]} 
+                        readOnly          ={readOnly} 
+                        key               ={index} 
+                />
+      )
+      
   }
 
   renderSections = ()=>{
@@ -18,7 +67,7 @@ class DynamicForm extends Component {
     const sectionsComponent =  sections.map((section, index)=>{
         const items = section.items;
         const itemsComponent = items.map((item, index)=>{
-                return <MDBCol md="6" key={index}>{this.renderItem(item)}</MDBCol>; 
+                return <MDBCol md="6" key={index}>{this.renderItem(item, index)}</MDBCol>; 
         });
         return <MDBRow key={index}>{itemsComponent}</MDBRow>;
       });
@@ -34,7 +83,7 @@ class DynamicForm extends Component {
                 <MDBCol >
                     <span className="text-danger">{this.props.errorMsg}</span>
                     <div className="text-center">
-                        <MDBBtn color="light-blue" onClick={this.props.submit.action}>
+                        <MDBBtn color="light-blue" onClick={()=>this.props.submit.action(this.state.target)}>
                             {this.props.submit.label}
                         </MDBBtn>
                     </div>
@@ -42,10 +91,9 @@ class DynamicForm extends Component {
             </MDBRow>)
 
     return submitComponent;
-  }
+  } 
 
   render() {
-    console.log(this.props.selectedEntity)
     const sectionsComponent = this.renderSections();
     const submitComponent = this.renderSubmitButtons();
     return (
@@ -55,6 +103,8 @@ class DynamicForm extends Component {
         </MDBContainer>
     );
   }
+
+  
 }
 
 const mapStateToProps = state => {

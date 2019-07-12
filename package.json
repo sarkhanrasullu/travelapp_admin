@@ -12,6 +12,7 @@
     "express": "^4.16.4",
     "jquery": "^3.4.0",
     "jsonwebtoken": "^8.5.1",
+    "local-storage": "^2.0.0",
     "mdbreact": "^4.13.0",
     "react": "^16.8.6",
     "react-bootstrap-table-next": "^3.1.4",
@@ -42,5 +43,6 @@
   ],
   "devDependencies": {
     "@fortawesome/fontawesome-free": "^5.8.1"
-  }
+  },
+  "proxy": "http://localhost"
 }
