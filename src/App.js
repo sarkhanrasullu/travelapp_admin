@@ -1,7 +1,7 @@
-import "./../node_modules/@fortawesome/fontawesome-free/css/all.min.css";
-import "./../node_modules/mdbreact/dist/css/mdb.css";
-import "./../node_modules/bootstrap-css-only/css/bootstrap.min.css";
-import './../node_modules/react-bootstrap-table-next/dist/react-bootstrap-table2.min.css';
+import "@fortawesome/fontawesome-free/css/all.min.css";
+import "mdbreact/dist/css/mdb.css";
+import "bootstrap-css-only/css/bootstrap.min.css";
+import 'react-bootstrap-table-next/dist/react-bootstrap-table2.min.css';
 import React, { Component } from 'react';
 import { Switch, Route } from 'react-router-dom'
 import MainPageContainer from "./containers/mainpage/MainPageContainer";

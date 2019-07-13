@@ -1,8 +1,9 @@
 {
-  "name": "turingchallenge",
+  "name": "admin",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@fortawesome/fontawesome-free": "^5.8.1",
     "axios": "^0.18.0",
     "bcrypt": "^3.0.6",
     "body-parser": "^1.18.3",
@@ -40,8 +41,5 @@
     "not dead",
     "not ie <= 11",
     "not op_mini all"
-  ],
-  "devDependencies": {
-    "@fortawesome/fontawesome-free": "^5.8.1"
-  }
+  ]
 }
