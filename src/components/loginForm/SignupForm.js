@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import { MDBInput, MDBBtn } from 'mdbreact';
-import customAxios from '../../services/CommonAxios';
 const querystring = require('querystring');
 
 class SignupForm extends Component {
@@ -11,14 +10,7 @@ class SignupForm extends Component {
   }
 
   signUp = () => {
-      customAxios.post('/customers', 
-      querystring.stringify(this.state))
-      .then(resp=>{
-        this.setState({errorMsg: null});
-        this.setState({successMsg: "Successfully registered. You can now log in!"});
-      }).catch(err=>{
-          this.setState({errorMsg: err.response.data.error.message});
-      })
+     
   }
 
   render(){
