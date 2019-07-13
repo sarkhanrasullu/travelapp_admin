@@ -15,19 +15,15 @@ const formDataFields = [
     new TableColumn("insertDate", "insert date"),
     new TableColumn("lastchangedate"),
 ];
-const photoDataFields = ["driverLicenseFront","driverLicenseBack","thumbnail"];
-const dateDataFields = ["lastchangedate"];
 
 class TripEditPage extends Component {
     render() {
         return (
                 <EntityEditPage
                     endpoint="trips"
-                    formProps= {
+                    formDataFields= {
                         {
-                            photoDataFields: photoDataFields,
-                            dateDataFields: dateDataFields,
-                            formDataFields: formDataFields
+                            formDataFields
                         }
                     }
                 />

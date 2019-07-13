@@ -21,21 +21,13 @@ const formDataFields =
         new TableColumn("driverLicenseFront","License Front"),
        
     ];
-const photoDataFields = ["driverLicenseFront","driverLicenseBack","_embedded.userId.thumbnail"];
-const dateDataFields = ["lastchangedate"];
 
 class DriverEditPage extends Component {
     render() {
         return (
                 <EntityEditPage
                     endpoint="drivers"
-                    formProps= {
-                        {
-                            photoDataFields: photoDataFields,
-                            dateDataFields: dateDataFields,
-                            formDataFields: formDataFields
-                        }
-                    }
+                    formDataFields={formDataFields}
                 />
         )
     }
