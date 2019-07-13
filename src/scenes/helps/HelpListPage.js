@@ -4,23 +4,19 @@ import { TableColumn } from '../../components/datatable/DataTableTypes';
 
 const columns = [
     new TableColumn("id"),
-    new TableColumn("name"),
-    new TableColumn("surname"),
-    new TableColumn("email"),
-    new TableColumn("phone"),
-    new TableColumn("lastchangedate")
+    new TableColumn("text"),
+    new TableColumn("insertDate"),
+    new TableColumn("_links",null,"empty")
 ];
 
-export default class UserListPage extends Component {
+export default class HelpListPage extends Component {
     render() {
-        return ( 
+        return (
                 <EntityListPage
-                    endpoint="users"
+                    endpoint="/helps"
                     searchDataFields={[
-                        new TableColumn("name"),
-                        new TableColumn("surname"),
-                        new TableColumn("email"),
-                        new TableColumn("phone")
+                        new TableColumn("text"),
+                        new TableColumn("insertDate","date")
                     ]}
                     tableProps= {
                         {

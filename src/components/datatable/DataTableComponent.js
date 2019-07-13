@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { MDBTable,MDBBtn,MDBIcon, MDBTableHead, MDBTableBody, MDBNavLink } from 'mdbreact';
+import { MDBTable,MDBIcon, MDBTableHead, MDBTableBody, MDBNavLink } from 'mdbreact';
 import PaginationWrapper from '../UI/PaginationWrapper';
 import StateUtil from '../../utils/StateUtil';
 

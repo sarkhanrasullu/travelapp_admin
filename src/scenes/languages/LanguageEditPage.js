@@ -3,20 +3,16 @@ import { TableColumn } from '../../components/datatable/DataTableTypes';
 import EntityEditPage from '../../components/entityeditpage/EntityEditPage';
 
 const formDataFields = [
-    new TableColumn("id"),
-    new TableColumn("text"),
-    new TableColumn("insertDate"),
+    new TableColumn("name"),
 ];
 
-class FeedbackEditPage extends Component {
+export default class LanguageEditPage extends Component {
     render() {
         return (
                 <EntityEditPage
-                    endpoint="feedbacks"
+                    endpoint="/languages"
                     formDataFields={formDataFields}
                 />
         )
     }
 }
-
-export default FeedbackEditPage

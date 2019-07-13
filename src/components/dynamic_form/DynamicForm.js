@@ -65,7 +65,7 @@ class DynamicForm extends Component {
   renderSections = ()=>{
     const {sections} = this.props;
     const sectionsComponent =  sections.map((section, index)=>{
-        const items = section.items;
+        const items = section.items?section.items:[];
         const itemsComponent = items.map((item, index)=>{
                 return <MDBCol md="6" key={index}>{this.renderItem(item, index)}</MDBCol>; 
         });

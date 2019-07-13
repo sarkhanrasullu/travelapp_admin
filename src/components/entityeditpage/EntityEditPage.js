@@ -1,19 +1,14 @@
 import React, { Component } from "react";
-import * as actions from "../../store/actions/index";
-import { connect } from "react-redux";
-import { withRouter } from "react-router-dom";
 import DynamicForm from "../dynamic_form/DynamicForm";
 import { MDBRow, MDBCol, MDBContainer } from "mdbreact";
 
 class EntityEditPage extends Component {
   state = {
-    target: {}
+    selectedEntity: {}
   };
 
   componentDidMount() {
-    this.props.onLoad(
-      this.props.endpoint + "/" + this.props.match.params.entityId
-    );
+     
   }
 
   handleSubmitBtn() {
@@ -29,7 +24,7 @@ class EntityEditPage extends Component {
         <MDBCol md={6}>
             <DynamicForm
               component={this}
-              selectedEntity={this.props.selectedEntity}
+              selectedEntity={this.state.selectedEntity}
               sections={[
                 {
                   items: this.props.formDataFields
@@ -47,20 +42,4 @@ class EntityEditPage extends Component {
   }
 }
 
-const mapStateToProps = state => {
-  console.log(state)
-  return {
-    selectedEntity: state.entity.selectedEntity
-  };
-};
-
-const mapDispatchToProps = dispatch => {
-  return {
-    onLoad: url => dispatch(actions.loadItem(url))
-  };
-};
-
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(withRouter(EntityEditPage));
+export default EntityEditPage;

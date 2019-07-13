@@ -5,8 +5,8 @@ import { connect } from "react-redux";
 class PaginationWrapper extends Component {
  
     render(){
-      let count = this.props.page.totalPages;
-      let currentPage = this.props.page.number;
+      let count = 1;//this.props.page.totalPages;
+      let currentPage = 1;//this.props.page.number;
       let rows = [];
       let pageIndex = 1;
       for(let i=0; i<count; i+=10){
@@ -40,12 +40,4 @@ class PaginationWrapper extends Component {
       }
 }
 
-const mapStateToProps = (state) => {
-  return {
-    page: state.entity.page,
-    loadFunc: state.entity.loadFunc
-  }
-}
-
-
-export default connect(mapStateToProps)(PaginationWrapper);
+export default PaginationWrapper;

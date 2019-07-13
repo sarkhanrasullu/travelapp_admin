@@ -6,7 +6,7 @@ export class TableColumn {
     sort?: string;
     width?: number;
     
-    constructor(  field: string,type:string, label: string,  sort?: string, width?: number){
+    constructor(  field: string, label: string,type:string,  sort?: string, width?: number){
         this.label = label===null || label===undefined?field:label;
         this.field = field;
         this.type = type;

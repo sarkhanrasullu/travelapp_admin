@@ -1,4 +1,5 @@
-import CommonService from '../../services/CommonService';
+import CommonService from './CommonService';
+import Constants from './Constants';
 
 class LoginService extends CommonService {
     
@@ -38,14 +39,13 @@ class LoginService extends CommonService {
           'Content-type': 'application/x-www-form-urlencoded',// '',
           'Authorization': 'Basic '+btoa(client_id+":"+client_secret)
         })
-        console.log(this.POST_HEADER_LOGIN(requestBody, requestHeader))
         fetch(`/oauth/token?`, this.POST_HEADER_LOGIN(requestBody, requestHeader))
         .then((response) => response.json())
             .then((responseJson) => {
-              console.log(responseJson);
-              if(responseJson.access_token && responseJson.access_token.length>0){
-                this.getLoggedInUser(responseJson.access_token, redirectSettings, callback);
-                
+              const loggedIn = responseJson.access_token && responseJson.access_token.length>0;
+              if(loggedIn){
+                this.setLoggedInUser({token: responseJson.access_token});
+                this.fetchLoggedInUser(redirectSettings, callback);
               } else {
                 if(message===true) this.setLoading(false, 'invalid email or password');
               }
@@ -55,16 +55,15 @@ class LoginService extends CommonService {
             });
     }
     
-       getLoggedInUser = (token, redirectSettings=true, callback)=>{
-        fetch(`/private/users/loggedinuser`, this.GET_HEADER(token))
+       fetchLoggedInUser = (refreshpage=true, callback)=>{
+        fetch(`/private/users/loggedinuser`, this.GET_HEADER())
             .then((response) => response.json())
                 .then((responseJson) => {
                   if(responseJson && responseJson.result && responseJson.result.id>0){
                     const user = responseJson.result;
-                    user.token = token;
-                    this.persist('loggedInUser',user);
-                    if(redirectSettings){
-                      this.navigate('/');
+                    this.setLoggedInUser(user);
+                    if(refreshpage){
+                      window.location.reload();
                     }
                     if(callback){
                       callback();
@@ -76,6 +75,13 @@ class LoginService extends CommonService {
                 })
                 .catch((error) => {
                 });
+      }
+
+     
+  
+      logout = ()=>{
+        this.persist(Constants.const_logged_in_user, null);
+        window.location.reload();
       }
 }
  

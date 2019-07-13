@@ -8,15 +8,15 @@ const formDataFields = [
     new TableColumn("insertDate"),
 ];
 
-class FeedbackEditPage extends Component {
+class HelpEditPage extends Component {
     render() {
         return (
                 <EntityEditPage
-                    endpoint="feedbacks"
+                    endpoint="/helps"
                     formDataFields={formDataFields}
                 />
         )
     }
 }
 
-export default FeedbackEditPage
+export default HelpEditPage

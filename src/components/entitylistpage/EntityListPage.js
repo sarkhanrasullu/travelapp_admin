@@ -1,17 +1,23 @@
 import React, { Component } from 'react'
 import DataTableComponent from '../datatable/DataTableComponent';
-import * as actions from '../../store/actions/index';
-import { connect } from 'react-redux';
 import DynamicForm from '../dynamic_form/DynamicForm';
-
+import EntityService from '../../services/EntityService';
 
 class EntityListPage extends Component {
+    state = {
+      list:[],
+      page:1
+    }
+    
+    service_entity = new EntityService(this);
+
     componentDidMount(){
-      this.props.onLoad(this.props.endpoint);
+        this.service_entity.loadItems(this.props.endpoint);
     }
     render() {
-        const {list, endpoint} = this.props;
+        const {endpoint} = this.props;
         const {columns} = this.props.tableProps;
+        const {list} = this.state;
         return (
           <React.Fragment>
             <DynamicForm 
@@ -26,23 +32,10 @@ class EntityListPage extends Component {
             <DataTableComponent 
                 endpoint={endpoint}
                 data={list}  
-                columns={columns}
-                />
+                columns={columns} />
               </React.Fragment>
         )
     }
 }
-
-const mapStateToProps = (state) => {  
-  return {
-      list: state.entity.list
-  } 
-}
-
-const mapDispatchToProps = (dispatch) => {
-  return {
-    onLoad: (url) => dispatch(actions.loadItems(url)),
-  }
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(EntityListPage);
+ 
+export default EntityListPage;

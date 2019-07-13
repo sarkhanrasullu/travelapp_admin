@@ -1,8 +1,4 @@
 import CommonUtil from "./CommonUtil";
-import React, { Component } from 'react'
-import {MDBInput} from 'mdbreact'
-import Image from "../components/image/Image";
-import FormInput from "../components/forminput/FormInput";
 
 export default class StateUtil {
         static get = (state, name) => {

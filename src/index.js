@@ -11,7 +11,6 @@ import allReducers from './store/reducers/index'
 import {Provider} from 'react-redux'
 import {createStore, applyMiddleware, compose} from 'redux'
 import thunk from 'redux-thunk'
-import Api from './services/CommonService';
 
 require('dotenv/config');
 

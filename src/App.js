@@ -16,14 +16,23 @@ import TripEditPage from "./scenes/trips/TripEditPage";
 import Login from "./scenes/login/Login";
 import FeedbackListPage from "./scenes/feedbacks/FeedbackListPage";
 import FeedbackEditPage from "./scenes/feedbacks/FeedbackEditPage";
+import LoginService from "./services/LoginService";
+import { withRouter } from "react-router-dom";
+import HelpListPage from "./scenes/helps/HelpListPage";
+import HelpEditPage from "./scenes/helps/HelpEditPage";
+import LanguageListPage from "./scenes/languages/LanguageListPage";
+import LanguageEditPage from "./scenes/languages/LanguageEditPage";
 
 class App extends Component {
+
+  service_login = new LoginService(this);
+
   render() {
+    const loggedInUser = this.service_login.getLoggedInUser();
     return (
       <MainPageContainer>
+           {loggedInUser?
          <Switch>
-            <Route exact path="/" component={UserListPage} />
-            <Route exact path="/login" component={Login} />
             <Route exact path="/users" component={UserListPage} />
             <Route exact path="/users/:entityId" component={UserEditPage} />
             <Route exact path="/drivers" component={DriverListPage} />
@@ -34,11 +43,19 @@ class App extends Component {
             <Route exact path="/trips/:entityId" component={TripEditPage} />
             <Route exact path="/feedbacks/" component={FeedbackListPage} />
             <Route exact path="/feedbacks/:entityId" component={FeedbackEditPage} />
+            <Route exact path="/helps/" component={HelpListPage} />
+            <Route exact path="/helps/:entityId" component={HelpEditPage} />
+            <Route exact path="/languages/" component={LanguageListPage} />
+            <Route exact path="/languages/:entityId" component={LanguageEditPage} />
             <Route component={UserListPage} />
-          </Switch>       
+          </Switch>:    
+          <Switch>
+            <Route exact path="/" component={Login} />
+          </Switch>
+        }
       </MainPageContainer>        
     );
   }
 }
 
-export default App;
+export default withRouter(App);

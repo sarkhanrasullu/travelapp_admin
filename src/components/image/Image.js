@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { MDBContainer, MDBRow, MDBCol, MDBView, MDBMask, MDBBadge, MDBIcon } from "mdbreact";
+import { MDBContainer, MDBRow, MDBCol, MDBView, MDBBadge } from "mdbreact";
 import ImageMask from './ImageMask';
 
 export default class Image extends Component {
