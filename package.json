@@ -44,5 +44,5 @@
   "devDependencies": {
     "@fortawesome/fontawesome-free": "^5.8.1"
   },
-  "proxy": "http://localhost"
+  "proxy": "http://tripescorestapi.herokuapp.com"
 }
