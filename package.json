@@ -43,6 +43,5 @@
   ],
   "devDependencies": {
     "@fortawesome/fontawesome-free": "^5.8.1"
-  },
-  "proxy": "http://tripescorestapi.herokuapp.com"
+  }
 }
