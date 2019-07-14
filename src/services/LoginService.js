@@ -38,7 +38,7 @@ class LoginService extends CommonService {
             'Content-type': 'application/x-www-form-urlencoded',// '',
             'Authorization': 'Basic '+btoa(client_id+":"+client_secret)
         })
-        fetch(`/oauth/token?`, this.POST_HEADER_LOGIN(requestBody, requestHeader))
+        fetch(`/api/oauth/token?`, this.POST_HEADER_LOGIN(requestBody, requestHeader))
             .then((response) => response.json())
             .then((responseJson) => {
                 const loggedIn = responseJson.access_token && responseJson.access_token.length>0;
