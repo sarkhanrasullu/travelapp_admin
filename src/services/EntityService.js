@@ -8,6 +8,8 @@ class EntityService extends CommonService {
         }
      
        loadItems = (url)=>{
+         url = "/api/"+url;
+         console.log(url);
         fetch(url)
                 .then(response => {
                   console.log(response);
