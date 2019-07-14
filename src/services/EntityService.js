@@ -1,4 +1,5 @@
 import CommonService from './CommonService';
+import Settings from './Settings';
 
 class EntityService extends CommonService {
     
@@ -6,7 +7,8 @@ class EntityService extends CommonService {
           super(component);
       }
      
-       loadItems = (url)=>{
+       loadItems = (url_)=>{
+        const url = Settings.ip+"/"+url_;
         fetch(url, this.GET_HEADER())
             .then((response) => response.json())
                 .then((res) => {
