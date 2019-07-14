@@ -3,7 +3,7 @@ const proxy = require("http-proxy-middleware");
 const filter = (pathname, req) => {
   console.log('===filter===');
   console.log(pathname);
-  const result= pathname.match('^/api');
+  const result= pathname.match('^/api') ||  pathname.match('^/oauth') ;
   console.log('redirect=');
   console.log(result);
   return result;

@@ -37,12 +37,19 @@ class CommonService{
       if(token) return "Bearer "+token; else return null;
     }
 
-     TOKEN_HEADER = () =>{
-          return {
-            Accept: 'application/json',
-            'Content-Type': 'application/json',
-            Authorization: this.getAuthorization()
-          }
+    TOKEN_HEADER = ()=>{
+      return {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+        Authorization: this.getAuthorization()
+      }
+    }
+
+     GET_HEADER = () =>{
+          return{
+            method: "GET",
+            headers: this.TOKEN_HEADER()
+        }
       }
       
     navigate = (url)=>{
@@ -57,8 +64,8 @@ class CommonService{
     }
 
     getLoggedInUser = ()=>{
-      // return this.get(Constants.const_logged_in_user);
-      return true;
+       return this.get(Constants.const_logged_in_user);
+      // return true;
     }
 
     setLoggedInUser = (user)=>{

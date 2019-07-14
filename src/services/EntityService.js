@@ -27,9 +27,9 @@ class EntityService extends CommonService {
       }
 
       loadItem = (url, target)=>{
-        this.commonAxios.get(url)
+        fetch(url)
+                .then(response =>  response.json())
                 .then(response => {
-                  response = response.data;
                   const state = this.component.state;
                   response = StateUtil.get(response, target);
                   console.log(response);
