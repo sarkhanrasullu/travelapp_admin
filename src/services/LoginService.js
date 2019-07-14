@@ -1,5 +1,6 @@
 import CommonService from './CommonService';
 import Constants from './Constants';
+import Settings from './Settings';
 
 class LoginService extends CommonService {
     
@@ -39,7 +40,7 @@ class LoginService extends CommonService {
           'Content-type': 'application/x-www-form-urlencoded',// '',
           'Authorization': 'Basic '+btoa(client_id+":"+client_secret)
         })
-        fetch(`/oauth/token?`, this.POST_HEADER_LOGIN(requestBody, requestHeader))
+        fetch(`${Settings.ip}/oauth/token?`, this.POST_HEADER_LOGIN(requestBody, requestHeader))
         .then((response) => response.json())
             .then((responseJson) => {
               const loggedIn = responseJson.access_token && responseJson.access_token.length>0;
@@ -56,7 +57,7 @@ class LoginService extends CommonService {
     }
     
        fetchLoggedInUser = (refreshpage=true, callback)=>{
-        fetch(`/private/users/loggedinuser`, this.GET_HEADER())
+        fetch(`${Settings.ip}/private/users/loggedinuser`, this.GET_HEADER())
             .then((response) => response.json())
                 .then((responseJson) => {
                   if(responseJson && responseJson.result && responseJson.result.id>0){
