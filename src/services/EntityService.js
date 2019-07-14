@@ -8,8 +8,9 @@ class EntityService extends CommonService {
         }
      
        loadItems = (url)=>{
-        this.commonAxios.get(url)
+        fetch(url)
                 .then(response => {
+                  console.log(response);
                   response = response.data;
                   const firstElementKey = Object.keys(response._embedded)[0];
                   const data = response._embedded[firstElementKey];
