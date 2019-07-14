@@ -1,10 +1,13 @@
 import ls from 'local-storage'
 import Constants from './Constants';
+import commonAxios from './CommonAxios';
 
 const querystring = require('querystring');
 
 
 class CommonService{
+    commonAxios = commonAxios;
+
     component = null;
     querystring = querystring;
 
@@ -20,36 +23,28 @@ class CommonService{
       return ls.get(key);
     } 
 
-     GET_HEADER = () =>{
-        const token = this.getLoggedInUser().token;
-        console.log('token='+token);
-        const result = {
-          method: 'GET',
-          headers: {
-            Accept: 'application/json',
-            'Content-Type': 'application/json',
-            Authorization: "Bearer "+token
-          },
-        }
-
-        return result;
+    getToken = ()=>{
+      const user = this.getLoggedInUser();
+      if(user){
+        return user.token;
+      }else{
+        return null;
       }
-      
-    POST_HEADER= (body) => {
-        const token = this.getLoggedInUser().token;
-        const result =  {
-            method: "POST",
-            headers: {
-              Accept: "application/json", 
-              "Content-Type": "application/json",
-              Authorization:"Bearer "+token
-            },
-            body: JSON.stringify(body)
-        }
-
-        return result;
     }
 
+    getAuthorization = ()=>{
+      const token = this.getToken();
+      if(token) return "Bearer "+token; else return null;
+    }
+
+     TOKEN_HEADER = () =>{
+          return {
+            Accept: 'application/json',
+            'Content-Type': 'application/json',
+            Authorization: this.getAuthorization()
+          }
+      }
+      
     navigate = (url)=>{
       console.log('url:'+url)
       const {props} = this.component;
@@ -62,14 +57,13 @@ class CommonService{
     }
 
     getLoggedInUser = ()=>{
-      return this.get(Constants.const_logged_in_user);
+      // return this.get(Constants.const_logged_in_user);
+      return true;
     }
 
     setLoggedInUser = (user)=>{
       const prevUser = this.getLoggedInUser();
       const newUser = {...prevUser, ...user};
-      console.log(user);
-      console.log(newUser);
       return this.persist(Constants.const_logged_in_user, newUser);
     }
 } 

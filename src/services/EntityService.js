@@ -1,23 +1,36 @@
 import CommonService from './CommonService';
-import Settings from './Settings';
+import StateUtil from '../utils/StateUtil';
 
 class EntityService extends CommonService {
     
-      constructor(component){
-          super(component);
-      }
+        constructor(component){
+            super(component);
+        }
      
-       loadItems = (url_)=>{
-        const url = Settings.ip+"/"+url_;
-        fetch(url, this.GET_HEADER())
-            .then((response) => response.json())
-                .then((res) => {
-                  const firstElementKey = Object.keys(res._embedded)[0];
-                  const data = res._embedded[firstElementKey];
-                  const state = this.component.state;  
+       loadItems = (url)=>{
+        this.commonAxios.get(url)
+                .then(response => {
+                  response = response.data;
+                  const firstElementKey = Object.keys(response._embedded)[0];
+                  const data = response._embedded[firstElementKey];
+                  const state = this.component.state;
                   state.list = data;
-                  state.page = res.page;
+                  state.page = response.page;
 
+                  this.component.setState(state);
+                })
+                .catch((error) => {
+                });
+      }
+
+      loadItem = (url, target)=>{
+        this.commonAxios.get(url)
+                .then(response => {
+                  response = response.data;
+                  const state = this.component.state;
+                  response = StateUtil.get(response, target);
+                  console.log(response);
+                  state.selectedEntity = response;
                   this.component.setState(state);
                 })
                 .catch((error) => {

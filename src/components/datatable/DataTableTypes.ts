@@ -1,14 +1,14 @@
 export class TableColumn { 
 
     label: string;
-    field: string;
+    name: string;
     type: string;
     sort?: string;
     width?: number;
     
-    constructor(  field: string, label: string,type:string,  sort?: string, width?: number){
-        this.label = label===null || label===undefined?field:label;
-        this.field = field;
+    constructor(  name: string, label: string,type:string,  sort?: string, width?: number){
+        this.label = label===null || label===undefined?name:label;
+        this.name = name;
         this.type = type;
         this.sort = sort;
         this.width = width;

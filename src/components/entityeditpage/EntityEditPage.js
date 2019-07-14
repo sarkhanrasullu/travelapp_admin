@@ -1,45 +1,48 @@
 import React, { Component } from "react";
 import DynamicForm from "../dynamic_form/DynamicForm";
 import { MDBRow, MDBCol, MDBContainer } from "mdbreact";
+import EntityService from "../../services/EntityService";
+import { withRouter } from "react-router-dom";
 
 class EntityEditPage extends Component {
   state = {
     selectedEntity: {}
   };
 
+  entityService = new EntityService(this);
+
   componentDidMount() {
-     
+     this.entityService.loadItem(this.props.endpoint+"/"+this.props.match.params.entityId, this.props.target);
   }
 
-  handleSubmitBtn() {
-    console.log("button clicked");
+  handleSubmitBtn=() =>{
+     console.log(this.state.selectedEntity)
   }
 
   render() {
-    
     return (
       <MDBContainer style={{ margin: "auto"}}>
         <MDBRow>
-        <MDBCol md={3}></MDBCol>
-        <MDBCol md={6}>
-            <DynamicForm
-              component={this}
-              selectedEntity={this.state.selectedEntity}
-              sections={[
-                {
-                  items: this.props.formDataFields
-                }
-              ]}
-              submit={{
-                label: "Save",
-                action: this.handleSubmitBtn
-              }}
-            />
-            </MDBCol>
+            <MDBCol md={3}></MDBCol>
+            <MDBCol md={6}>
+                <DynamicForm
+                  component={this}
+                  target={this.state.selectedEntity}
+                  sections={[
+                    {
+                      items: this.props.formDataFields
+                    }
+                  ]}
+                  submit={{
+                    label: "Save",
+                    action: this.handleSubmitBtn
+                  }}
+                />
+              </MDBCol>
           </MDBRow>
       </MDBContainer>
     );
   }
 }
 
-export default EntityEditPage;
+export default withRouter(EntityEditPage);

@@ -2,14 +2,16 @@ import CommonUtil from "./CommonUtil";
 
 export default class StateUtil {
         static get = (state, name) => {
-            if(!state || !name) return null;
+            if(!state || !name) return state;
+            if(name.length===0) return state;
             const p = name;
             const obj = state;
             return p.split(".").reduce((xs, x) =>xs&&xs[x]||null, obj)
         } 
 
         static set = (path,schema, value) => {
-            if(!path || !schema || !value) return;
+            
+            if(!path || !schema || value===null) return;
             var pList = path.split('.');
             var len = pList.length;
             for(var i = 0; i < len-1; i++) {
@@ -34,7 +36,7 @@ export default class StateUtil {
         };
 
         static renderData(row, dataField){
-            let data = StateUtil.get(row, dataField.field); 
+            let data = StateUtil.get(row, dataField.name); 
             if(data===null) return "";
             let result = data;
             if(dataField.type==="empty"){

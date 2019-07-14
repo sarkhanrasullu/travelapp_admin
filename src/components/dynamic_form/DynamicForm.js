@@ -9,15 +9,19 @@ import StateUtil from "../../utils/StateUtil";
 class DynamicForm extends Component {
  
   state = {
-    target:{
-      validate:()=>this.validate(),
-      validation:{}
-    }
+      validate: ()=>this.validate(),
+      validation: {},
+      target: {}
+  }
+
+  componentWillReceiveProps(p, n){
+    if(p && p.component && p.component.state)
+    this.setState({target:p.component.state.selectedEntity});
   }
 
   validate=()=>{
     const state = this.state;
-    const validation = state.target.validation;
+    const validation = state.validation;
   
     let result = true;
     
@@ -36,7 +40,6 @@ class DynamicForm extends Component {
          }
        })
     })
-    console.log(validation);
     state.target.validation = validation;
     this.setState(state);
     return result;
@@ -44,7 +47,7 @@ class DynamicForm extends Component {
  
   renderItem = (item, index)=>{
      const {readOnly} = this.props;
-     const validation = readOnly? {}:this.state.target.validation;
+     const validation = readOnly? {}:this.state.validation;
       return (
         <FormInput 
                         component         ={this} 
@@ -60,12 +63,13 @@ class DynamicForm extends Component {
                 />
       )
       
-  }
+  } 
 
   renderSections = ()=>{
     const {sections} = this.props;
     const sectionsComponent =  sections.map((section, index)=>{
         const items = section.items?section.items:[];
+        console.log(items);
         const itemsComponent = items.map((item, index)=>{
                 return <MDBCol md="6" key={index}>{this.renderItem(item, index)}</MDBCol>; 
         });

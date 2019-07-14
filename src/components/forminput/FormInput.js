@@ -35,21 +35,20 @@ export default class FormInput extends Component {
 
 
     getDefaultInputComponent = ()=>{
-      const { placeholder, type, error, readOnly, secure } = this.props;
-      let currentValue = StateUtil.get(this);
+      const { placeholder, type, error, readOnly, secure, component, name } = this.props;
+      let currentValue = StateUtil.get(component.state, name);
       currentValue = currentValue?currentValue+"":null;
+
       let result = <Input  
           type={secure?"password":"text"}
           disabled={readOnly}  
           placeholder={placeholder} 
-          defaultValue={currentValue} 
+          value={currentValue} 
           style={error ? style.errorInput:null} 
-          getValue={(val, next)=>{
-            console.log(next);
-              let v = val;
-              if(type==="number"){ v = v.replace(/[^0-9]/g, '') }
-              StateUtil.handleFieldChange(this, v);
-          }}
+          getValue={(val)=>{ 
+            StateUtil.handleFieldChange(this, val);
+          }
+        }
       />;
 
       return result;

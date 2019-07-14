@@ -27,11 +27,7 @@ class GuideEditPage extends Component {
         return (
                 <EntityEditPage
                     endpoint="guides"
-                    formDataFields= {
-                        {
-                            formDataFields
-                        }
-                    }
+                    formDataFields= {formDataFields}
                 />
         )
     }
