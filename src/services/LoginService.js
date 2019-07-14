@@ -18,8 +18,6 @@ class LoginService extends CommonService {
 
     handleLogin = (target, redirectSettings=true, callback, spinner=true, message=true)=>{
 
-        if(!target.validate()) return;
-
         const user = target.user;
         if(spinner===true) this.setLoading(true);
 
