@@ -11,6 +11,7 @@ class EntityService extends CommonService {
          url = "/api/"+url;
          console.log(url);
         fetch(url)
+                .then(response =>  response.json())
                 .then(response => {
                   console.log(response);
                   response = response.data;
