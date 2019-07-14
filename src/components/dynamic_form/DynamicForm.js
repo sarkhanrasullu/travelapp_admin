@@ -87,7 +87,13 @@ class DynamicForm extends Component {
                 <MDBCol >
                     <span className="text-danger">{this.props.errorMsg}</span>
                     <div className="text-center">
-                        <MDBBtn color="light-blue" onClick={()=>this.props.submit.action(this.state.target)}>
+                        <MDBBtn color="light-blue" onClick={()=>
+                          {
+                            if(this.state.validate()) {
+                              this.props.submit.action(this.state.target)
+                            }
+                          } 
+                        }>
                             {this.props.submit.label}
                         </MDBBtn>
                     </div>
