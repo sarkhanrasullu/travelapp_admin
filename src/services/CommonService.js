@@ -22,6 +22,7 @@ class CommonService{
 
      GET_HEADER = () =>{
         const token = this.getLoggedInUser().token;
+        console.log('token='+token);
         const result = {
           method: 'GET',
           headers: {
@@ -66,7 +67,9 @@ class CommonService{
 
     setLoggedInUser = (user)=>{
       const prevUser = this.getLoggedInUser();
-      const newUser = {...prevUser, user};
+      const newUser = {...prevUser, ...user};
+      console.log(user);
+      console.log(newUser);
       return this.persist(Constants.const_logged_in_user, newUser);
     }
 } 
