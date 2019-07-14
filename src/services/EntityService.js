@@ -14,7 +14,6 @@ class EntityService extends CommonService {
                 .then(response =>  response.json())
                 .then(response => {
                   console.log(response);
-                  response = response.data;
                   const firstElementKey = Object.keys(response._embedded)[0];
                   const data = response._embedded[firstElementKey];
                   const state = this.component.state;
