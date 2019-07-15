@@ -9,16 +9,17 @@ class EntityService extends CommonService {
      
        loadItems = (url)=>{
          url = "/api/"+url;
-         console.log(url);
+        
+        this.setLoading(true);
         fetch(url)
                 .then(response =>  response.json())
                 .then(response => {
-                  console.log(response);
                   const firstElementKey = Object.keys(response._embedded)[0];
                   const data = response._embedded[firstElementKey];
                   const state = this.component.state;
                   state.list = data;
                   state.page = response.page;
+                  this.setLoading(false);
 
                   this.component.setState(state);
                 })
@@ -26,14 +27,16 @@ class EntityService extends CommonService {
                 });
       }
 
-      loadItem = (url, target)=>{
+      loadItem = (url)=>{
+        url = "/api/"+url;
+        this.setLoading(true);
         fetch(url)
                 .then(response =>  response.json())
                 .then(response => {
+                  console.log(response)
                   const state = this.component.state;
-                  response = StateUtil.get(response, target);
-                  console.log(response);
-                  state.selectedEntity = response;
+                  state.target = response;
+                  this.setLoading(false);
                   this.component.setState(state);
                 })
                 .catch((error) => {

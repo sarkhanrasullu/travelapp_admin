@@ -22,6 +22,8 @@ import HelpListPage from "./scenes/helps/HelpListPage";
 import HelpEditPage from "./scenes/helps/HelpEditPage";
 import LanguageListPage from "./scenes/languages/LanguageListPage";
 import LanguageEditPage from "./scenes/languages/LanguageEditPage";
+import CarUtilitiesListPage from "./scenes/car_utilities/CarUtilitiesListPage";
+import CarUtilitiesEditPage from "./scenes/car_utilities/CarUtilitiesEditPage";
 
 class App extends Component {
 
@@ -47,6 +49,8 @@ class App extends Component {
             <Route exact path="/helps/:entityId" component={HelpEditPage} />
             <Route exact path="/languages/" component={LanguageListPage} />
             <Route exact path="/languages/:entityId" component={LanguageEditPage} />
+            <Route exact path="/carutilities/" component={CarUtilitiesListPage} />
+            <Route exact path="/carutilities/:entityId" component={CarUtilitiesEditPage} />
             <Route component={UserListPage} />
           </Switch>:    
           <Switch>

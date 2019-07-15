@@ -21,9 +21,9 @@ export default class FormInput extends Component {
 
     
     render() {
-        const {unwrap, label, error, optional, componentType} = this.props;
-        
-        const inputComponent = this.getInputComponent(componentType);
+        const {unwrap, label, error, optional, type} = this.props;
+        if(type==="empty") return null;
+        const inputComponent = this.getInputComponent();
         
         const result = unwrap?inputComponent:
                 <View >
@@ -35,7 +35,7 @@ export default class FormInput extends Component {
 
 
     getDefaultInputComponent = ()=>{
-      const { placeholder, type, error, readOnly, secure, component, name } = this.props;
+      const { placeholder, error, readOnly, secure, component, name } = this.props;
       let currentValue = StateUtil.get(component.state, name);
       currentValue = currentValue?currentValue+"":null;
 

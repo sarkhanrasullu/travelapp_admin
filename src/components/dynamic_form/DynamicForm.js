@@ -16,7 +16,7 @@ class DynamicForm extends Component {
 
   componentWillReceiveProps(p, n){
     if(p && p.component && p.component.state)
-    this.setState({target:p.component.state.selectedEntity});
+    this.setState({target:p.component.state.target});
   }
 
   validate=()=>{
@@ -69,7 +69,6 @@ class DynamicForm extends Component {
     const {sections} = this.props;
     const sectionsComponent =  sections.map((section, index)=>{
         const items = section.items?section.items:[];
-        console.log(items);
         const itemsComponent = items.map((item, index)=>{
                 return <MDBCol md="6" key={index}>{this.renderItem(item, index)}</MDBCol>; 
         });

@@ -63,6 +63,7 @@ class NavbarWrapper extends Component {
                 {this.linkItem("/feedbacks","Feedbacks")}
                 {this.linkItem("/helps","Help Requests")}
                 {this.linkItem("/languages","Languages")}
+                {this.linkItem("/carutilities","Car Utilities")}
               </MDBNavbarNav>
               <MDBNavbarNav right>
                 <MDBNavItem onClick={() => this.service_login.logout()}>

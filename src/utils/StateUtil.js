@@ -1,12 +1,14 @@
 import CommonUtil from "./CommonUtil";
 
 export default class StateUtil {
+
         static get = (state, name) => {
-            if(!state || !name) return state;
+            if(!state || !name) return "";
             if(name.length===0) return state;
             const p = name;
             const obj = state;
-            return p.split(".").reduce((xs, x) =>xs&&xs[x]||null, obj)
+            const result= p.split(".").reduce((xs, x) =>xs&&xs[x]||null, obj);
+            return result;
         } 
 
         static set = (path,schema, value) => {

@@ -4,22 +4,15 @@ import EntityEditPage from '../../components/entityeditpage/EntityEditPage';
 
 const formDataFields = [
     new TableColumn("name"),
-    new TableColumn("surname"),
-    new TableColumn("email"),
-    new TableColumn("phone"),
-    new TableColumn("thumbnail",null, "image_base64"),
-    new TableColumn("lastchangedate", null, "empty")
 ];
 
-class UserEditPage extends Component {
+export default class CarUtilitiesEditPage extends Component {
     render() {
         return (
                 <EntityEditPage
-                    endpoint="users"
+                    endpoint="/carUtilities"
                     formDataFields={formDataFields}
                 />
         )
     }
 }
-
-export default UserEditPage

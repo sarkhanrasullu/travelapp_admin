@@ -3,10 +3,11 @@ import DynamicForm from "../dynamic_form/DynamicForm";
 import { MDBRow, MDBCol, MDBContainer } from "mdbreact";
 import EntityService from "../../services/EntityService";
 import { withRouter } from "react-router-dom";
+import LoadingSpinner from "../spinner/LoadingSpinner";
 
 class EntityEditPage extends Component {
   state = {
-    selectedEntity: {}
+    target: {}
   };
 
   entityService = new EntityService(this);
@@ -16,10 +17,14 @@ class EntityEditPage extends Component {
   }
 
   handleSubmitBtn=() =>{
-     console.log(this.state.selectedEntity)
+     console.log(this.state.target)
   }
 
   render() {
+    if(this.state.loading){
+      return <LoadingSpinner/>;
+    }
+    
     return (
       <MDBContainer style={{ margin: "auto"}}>
         <MDBRow>
@@ -27,7 +32,7 @@ class EntityEditPage extends Component {
             <MDBCol md={6}>
                 <DynamicForm
                   component={this}
-                  target={this.state.selectedEntity}
+                  target={this.state.target}
                   sections={[
                     {
                       items: this.props.formDataFields

@@ -2,15 +2,23 @@ import React, { Component } from "react";
 import { MDBRow, MDBCol, MDBContainer } from "mdbreact";
 import * as actions from "../../store/actions/index";
 import { connect } from "react-redux";
-import { withRouter } from "react-router-dom";
 import DynamicForm from "../../components/dynamic_form/DynamicForm";
 import LoginService from "../../services/LoginService";
+import LoadingSpinner from "../../components/spinner/LoadingSpinner";
 
 class Login extends Component {
 
+  state = {
+    loading: false
+  }
+  
   service = new LoginService(this);
  
   render() {
+    if(this.state.loading){
+      return <LoadingSpinner/>;
+    }
+
     return (
         <MDBContainer style={{ margin: "auto" }}>
           <MDBRow>

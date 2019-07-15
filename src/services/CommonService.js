@@ -59,8 +59,11 @@ class CommonService{
     }
 
     setLoading = (loading, errorMsg, successMsg)=>{
-      const {props} = this.component;
-      props.setLoading(loading, errorMsg, successMsg);
+      const {state} = this.component;
+      state.loading = loading;
+      state.errorMsg = errorMsg;
+      state.successMsg = successMsg;
+      this.component.setState(state);
     }
 
     getLoggedInUser = ()=>{
