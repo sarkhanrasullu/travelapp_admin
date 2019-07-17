@@ -11,6 +11,8 @@ export default class LanguageEditPage extends Component {
         return (
                 <EntityEditPage
                     endpoint="/languages"
+                    projection="languageProjection"
+                    callback_url = "/languages"
                     formDataFields={formDataFields}
                 />
         )

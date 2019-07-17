@@ -6,6 +6,7 @@ const columns = [
     new TableColumn("id"),
     new TableColumn("text"),
     new TableColumn("insertDate"),
+    new TableColumn("issued"),
     new TableColumn("_links",null,"empty")
 ];
 

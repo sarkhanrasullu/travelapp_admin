@@ -5,7 +5,8 @@ import EntityEditPage from '../../components/entityeditpage/EntityEditPage';
 const formDataFields = [
     new TableColumn("id"),
     new TableColumn("text"),
-    new TableColumn("insertDate"),
+    new TableColumn("email"),
+    new TableColumn("issued"),
 ];
 
 class HelpEditPage extends Component {
@@ -13,6 +14,8 @@ class HelpEditPage extends Component {
         return (
                 <EntityEditPage
                     endpoint="/helps"
+                    callback_url="/helps"
+                    projection="helpProjection"
                     formDataFields={formDataFields}
                 />
         )

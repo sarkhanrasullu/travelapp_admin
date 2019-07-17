@@ -8,12 +8,11 @@ const formDataFields = [
     new TableColumn("userId.surname"),
     new TableColumn("userId.email"),
     new TableColumn("userId.phone"),
+    new TableColumn("userId.nationalityId.id", "nationality"),
+    new TableColumn("placeId.id", "place"),
     new TableColumn("pickupDate", "pickup date"),
     new TableColumn("pickupTime", "pickup time"),
-    new TableColumn("placeId.name", "place"),
-    new TableColumn("userId.nationalityId.name", "nationality"),
-    new TableColumn("insertDate", "insert date"),
-    new TableColumn("lastchangedate"),
+    new TableColumn("pickupCoords", "pickup place"),
 ];
 
 class TripEditPage extends Component {
@@ -21,6 +20,8 @@ class TripEditPage extends Component {
         return (
                 <EntityEditPage
                     endpoint="trips"
+                    projection="tripProjection"
+                    callback_url = "/trips"
                     formDataFields= {formDataFields}
                 />
         )

@@ -27,8 +27,8 @@ class EntityService extends CommonService {
                 });
       }
 
-      loadItem = (url)=>{
-        url = "/api/"+url;
+      loadItem = (url, projection)=>{
+        url = "/api/"+url+"?projection="+projection;
         this.setLoading(true);
         fetch(url)
                 .then(response =>  response.json())
@@ -38,6 +38,21 @@ class EntityService extends CommonService {
                   state.target = response;
                   this.setLoading(false);
                   this.component.setState(state);
+                })
+                .catch((error) => {
+                });
+      }
+      
+      saveItem = (url, data, callback_url)=>{
+        url = "/api/"+url;
+        this.setLoading(true);
+        console.log(this.POST_HEADER(data));  
+        fetch(url, this.POST_HEADER(data))
+                .then(response =>  response.json())
+                .then(response => { 
+                  console.log(response)
+                  // window.location.href = callback_url;
+                  this.setLoading(false);
                 })
                 .catch((error) => {
                 });

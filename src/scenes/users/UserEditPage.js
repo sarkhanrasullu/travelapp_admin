@@ -8,7 +8,6 @@ const formDataFields = [
     new TableColumn("email"),
     new TableColumn("phone"),
     new TableColumn("thumbnail",null, "image_base64"),
-    new TableColumn("lastchangedate", null, "empty")
 ];
 
 class UserEditPage extends Component {
@@ -16,6 +15,8 @@ class UserEditPage extends Component {
         return (
                 <EntityEditPage
                     endpoint="users"
+                    projection="userProjection"
+                    callback_url="/users"
                     formDataFields={formDataFields}
                 />
         )

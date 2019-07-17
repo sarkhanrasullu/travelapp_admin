@@ -8,7 +8,7 @@ const columns = [
     new TableColumn("userId.surname","surname"),
     new TableColumn("userId.email","email"),
     new TableColumn("userId.phone","phone"),   
-    new TableColumn("nationalityId.nationalityId.name","nationality"),
+    new TableColumn("userId.nationalityId.name","nationality"),
     new TableColumn("pickupDate","pickup date"),
     new TableColumn("pickupTime","pickup time"),
     new TableColumn("placeId.name","place"),

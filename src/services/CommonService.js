@@ -51,6 +51,14 @@ class CommonService{
             headers: this.TOKEN_HEADER()
         }
       }
+
+      POST_HEADER = (data) =>{
+        return{
+          method: "POST",
+          headers: this.TOKEN_HEADER(),
+          body: JSON.stringify(data)
+      }
+    }
       
     navigate = (url)=>{
       console.log('url:'+url)
