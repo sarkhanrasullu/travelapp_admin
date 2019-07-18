@@ -24,6 +24,8 @@ import LanguageListPage from "./scenes/languages/LanguageListPage";
 import LanguageEditPage from "./scenes/languages/LanguageEditPage";
 import CarUtilitiesListPage from "./scenes/car_utilities/CarUtilitiesListPage";
 import CarUtilitiesEditPage from "./scenes/car_utilities/CarUtilitiesEditPage";
+import DestinationListPage from "./scenes/destinations/DestinationListPage";
+import DestinationEditPage from "./scenes/destinations/DestinationEditPage";
 
 class App extends Component {
 
@@ -43,6 +45,8 @@ class App extends Component {
             <Route exact path="/guides/:entityId" component={GuideEditPage} />
             <Route exact path="/trips/" component={TripListPage} />
             <Route exact path="/trips/:entityId" component={TripEditPage} />
+            <Route exact path="/places/" component={DestinationListPage} />
+            <Route exact path="/places/:entityId" component={DestinationEditPage} />
             <Route exact path="/feedbacks/" component={FeedbackListPage} />
             <Route exact path="/feedbacks/:entityId" component={FeedbackEditPage} />
             <Route exact path="/helps/" component={HelpListPage} />

@@ -6,9 +6,9 @@ const formDataFields =
     [
         // new TableColumn("id"),
         new TableColumn("_embedded.userId.thumbnail","Image","image_base64"),
+        new TableColumn(null,null,"empty"),
         new TableColumn("driverLicenseBack","License Back","image_base64"),
         new TableColumn("driverLicenseFront","License Front","image_base64"),
-        new TableColumn(null,null,"empty"),
         new TableColumn("_embedded.userId.name","name"),
         new TableColumn("_embedded.userId.surname","surname"),
         new TableColumn("age"),
@@ -19,6 +19,7 @@ const formDataFields =
         new TableColumn("price2","Absheron"),
         new TableColumn("price3","Out of Absheron"),
         new TableColumn(null,null,"empty"),
+        new TableColumn("about",null,"textarea"),
       
        
     ];

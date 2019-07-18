@@ -3,10 +3,10 @@ import { TableColumn } from '../../components/datatable/DataTableTypes';
 import EntityEditPage from '../../components/entityeditpage/EntityEditPage';
 
 const formDataFields = [
-    new TableColumn("id"),
-    new TableColumn("text"),
     new TableColumn("email"),
     new TableColumn("issued"),
+    new TableColumn("text",null, "textarea"),
+
 ];
 
 class HelpEditPage extends Component {

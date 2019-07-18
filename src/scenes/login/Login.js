@@ -30,8 +30,8 @@ class Login extends Component {
                           [
                             {
                               items:[
-                                { name:"user.email", label:"Email" },
-                                { name:"user.password", label:"Password", secure:true }
+                                { name:"user.email", label:"Email", type:"text" },
+                                { name:"user.password", label:"Password", type: "password" }
                               ]
                             }          
                           ]

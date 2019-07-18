@@ -80,7 +80,7 @@ class LoginService extends CommonService {
 
     logout = ()=>{
         this.persist(Constants.const_logged_in_user, null);
-        window.location.reload();
+        window.location.href="/"
     }
 }
 

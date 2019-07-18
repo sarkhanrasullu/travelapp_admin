@@ -5,7 +5,6 @@ import { TableColumn } from '../../components/datatable/DataTableTypes';
 const columns = [
     new TableColumn("id"),
     new TableColumn("name"),
-    new TableColumn("_links",null,"empty")
 ];
 
 const searchFields = [

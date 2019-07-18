@@ -59,6 +59,14 @@ class CommonService{
           body: JSON.stringify(data)
       }
     }
+
+    PUT_HEADER = (data) =>{
+      return{
+        method: "PUT",
+        headers: this.TOKEN_HEADER(),
+        body: JSON.stringify(data)
+    }
+  }
       
     navigate = (url)=>{
       console.log('url:'+url)

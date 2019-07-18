@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import {Input,View} from 'mdbreact'
+import {MDBInput, View} from 'mdbreact'
 import StateUtil from '../../utils/StateUtil'
 import NationalityPicker from '../nationalitypicker/NationalityPicker';
 import ModelPicker from '../modelpicker/ModelPicker';
@@ -35,12 +35,13 @@ export default class FormInput extends Component {
 
 
     getDefaultInputComponent = ()=>{
-      const { placeholder, error, readOnly, secure, component, name } = this.props;
+      const { placeholder, error, readOnly, type, component, name } = this.props;
       let currentValue = StateUtil.get(component.state, name);
       currentValue = currentValue?currentValue+"":null;
 
-      let result = <Input  
-          type={secure?"password":"text"}
+      let result = <MDBInput  
+          type={type?type:"text"}
+          rows={10}
           disabled={readOnly}  
           placeholder={placeholder} 
           value={currentValue} 
@@ -57,27 +58,30 @@ export default class FormInput extends Component {
     getInputComponent = ()=>{
       const { type, error, readOnly, name, customComponent } = this.props;
 
-      let result = this.getDefaultInputComponent();
+      let result =[];
 
       const {component} = this.props;
-      if(type==="nationalitypicker"){
-        result = <NationalityPicker readOnly={readOnly} error={error} component={component} name={name}/>
+      if(type==="text" || type==="textarea"||type==="password"){
+        result.push(this.getDefaultInputComponent());
+      }else if(type==="nationalitypicker"){
+        result.push(<NationalityPicker readOnly={readOnly} error={error} component={component} name={name}/>);
       }else if(type === "imagepicker" || type === "image_base64"){
-        result = <MyImagePicker readOnly={readOnly} error={error} component={component} name={name} type={type}/>
+        result.push(<MyImagePicker readOnly={readOnly} error={error} component={component} name={name} type={type}/>);
+        result.push(this.getDefaultInputComponent());
       }else if(type === "brandpicker"){
-        result = <BrandPicker readOnly={readOnly} error={error} component={component} name={name}/>
+        result.push(<BrandPicker readOnly={readOnly} error={error} component={component} name={name}/>);
       }else if(type === "modelpicker"){
-        result = <ModelPicker readOnly={readOnly} error={error} component={component} name={name} />
+        result.push(<ModelPicker readOnly={readOnly} error={error} component={component} name={name} />);
       }else if(type === "carutilitypicker"){
-        result = <CarUtilityPicker readOnly={readOnly} error={error} component={component} name={name} />
+        result.push(<CarUtilityPicker readOnly={readOnly} error={error} component={component} name={name} />);
       }else if(type === "educationpicker"){
-        result = <EducationPicker readOnly={readOnly} error={error} component={component} name={name} />
+        result.push(<EducationPicker readOnly={readOnly} error={error} component={component} name={name} />);
       }else if(type === "genderpicker"){
-        result = <GenderPicker readOnly={readOnly} error={error} component={component} name={name} />
+        result.push(<GenderPicker readOnly={readOnly} error={error} component={component} name={name} />);
       }else if(type === "mappicker"){
-        result = <MapPicker readOnly={readOnly} error={error} component={component} name={name} />
+        result.push(<MapPicker readOnly={readOnly} error={error} component={component} name={name} />);
       }else if(type === "custom"){
-        result = customComponent;
+        result.push(customComponent);
       } 
 
       return result;

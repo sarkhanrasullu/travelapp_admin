@@ -7,7 +7,6 @@ const columns = [
     new TableColumn("text"),
     new TableColumn("insertDate"),
     new TableColumn("issued"),
-    new TableColumn("_links",null, "empty")
 ];
 
 export default class FeedbackListPage extends Component {

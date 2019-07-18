@@ -52,7 +52,6 @@ class DynamicForm extends Component {
         <FormInput 
                         component         ={this} 
                         name              ={"target."+item.name} 
-                        secure            ={item.secure}
                         optional          ={item.optional}
                         customComponent   ={item.customComponent}
                         type              ={item.type} 
@@ -70,7 +69,7 @@ class DynamicForm extends Component {
     const sectionsComponent =  sections.map((section, index)=>{
         const items = section.items?section.items:[];
         const itemsComponent = items.map((item, index)=>{
-                return <MDBCol md="6" key={index}>{this.renderItem(item, index)}</MDBCol>; 
+                return <MDBCol md={item.type==="textarea"?12:6} key={index}>{this.renderItem(item, index)}</MDBCol>; 
         });
         return <MDBRow key={index}>{itemsComponent}</MDBRow>;
       });

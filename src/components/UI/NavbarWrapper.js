@@ -60,6 +60,7 @@ class NavbarWrapper extends Component {
                 {this.linkItem("/drivers","Drivers")}
                 {this.linkItem("/guides","Guides")}
                 {this.linkItem("/trips","Trips")}
+                {this.linkItem("/places","Places")}
                 {this.linkItem("/feedbacks","Feedbacks")}
                 {this.linkItem("/helps","Help Requests")}
                 {this.linkItem("/languages","Languages")}

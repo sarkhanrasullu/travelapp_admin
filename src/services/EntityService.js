@@ -51,7 +51,7 @@ class EntityService extends CommonService {
                 .then(response =>  response.json())
                 .then(response => { 
                   console.log(response)
-                  // window.location.href = callback_url;
+                  window.location.reload();
                   this.setLoading(false);
                 })
                 .catch((error) => {

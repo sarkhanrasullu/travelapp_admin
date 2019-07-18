@@ -17,7 +17,7 @@ class EntityEditPage extends Component {
   }
 
   handleSubmitBtn=() =>{
-     this.entityService.saveItem(this.props.endpoint, this.state.target, this.props.callback_url);
+    this.entityService.saveItem(this.props.endpoint, this.state.target, this.props.callback_url);
   }
 
   render() {

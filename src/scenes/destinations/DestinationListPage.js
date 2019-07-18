@@ -4,17 +4,17 @@ import { TableColumn } from '../../components/datatable/DataTableTypes';
 
 const columns = [
     new TableColumn("id"),
-    new TableColumn("text",null, "textarea"),
-    new TableColumn("email"),
-    new TableColumn("issued"),
-    new TableColumn("insertDate"),
+    new TableColumn("name"),
+    new TableColumn("distance"),
+    new TableColumn("reviewCount"),
+    new TableColumn("reviewAvg"),
 ];
 
-export default class HelpListPage extends Component {
+export default class DestinationListPage extends Component {
     render() {
         return (
                 <EntityListPage
-                    endpoint="/helps"
+                    endpoint="/places"
                     searchDataFields={[
                         new TableColumn("text"),
                         new TableColumn("insertDate","date")

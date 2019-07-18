@@ -3,18 +3,14 @@ export class TableColumn {
     label: string;
     name: string;
     type: string;
-    sort?: string;
-    width?: number;
+    disabled: boolean;
     
-    constructor(  name: string, label: string,type:string,  sort?: string, width?: number){
+    constructor(  name: string, label: string, type:string="text", disabled: boolean=false){
         this.label = label===null || label===undefined?name:label;
         this.name = name;
         this.type = type;
-        this.sort = sort;
-        this.width = width;
+        this.disabled = disabled;
     }
-
-    
 
 }
 
