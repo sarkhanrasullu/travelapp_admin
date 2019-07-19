@@ -14,9 +14,11 @@ const columns =
         new TableColumn("price1","Baku"),
         new TableColumn("price2","Absheron"),
         new TableColumn("price3","Out of Absheron"),
+        new TableColumn("userId.thumbnail","image","image"),
         new TableColumn("isVerified","Verified"),
     ];
-    const searchFields =
+
+const searchFields =
     [
         new TableColumn("userId.name","name"),
         new TableColumn("userId.surname","surname"),

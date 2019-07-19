@@ -31,21 +31,29 @@ export default class StateUtil {
             owner.setState({val: val})
             const {name, component} = owner.props;
             if(name && component){
-                const st = {...component.state};
+                const st = component.state;
+//                 console.log(name);
+//                 console.log(st);
+//                 console.log(val);
+// console.log('-------')
                 StateUtil.set(name, st, val);
                 component.setState(st);
+                // console.log(component);
+                // console.log(component.state);
             }
         };
 
-        static renderData(row, dataField){
-            let data = StateUtil.get(row, dataField.name); 
+        static renderData(row, column){
+            let data = StateUtil.get(row, column.name); 
+            console.log(column);
+            console.log(data);
             if(data===null) return "";
             let result = data;
-            if(dataField.type==="empty"){
+            if(column.type==="empty"){
                 return null;
-            }else if(dataField.type==="image"){
-                result = CommonUtil.imageFormatter(data);
-            }else if(dataField.type==="date"){
+            }else if(column.type==="image"){
+                result = CommonUtil.imageFormatter(data, column);
+            }else if(column.type==="date"){
                 result = CommonUtil.formatDate(data);
             }else if( (typeof data) === "object"){
                 const objectKeys = Object.keys(data);

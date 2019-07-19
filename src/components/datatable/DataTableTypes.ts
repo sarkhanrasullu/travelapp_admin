@@ -3,13 +3,15 @@ export class TableColumn {
     label: string;
     name: string;
     type: string;
-    disabled: boolean;
+    parent: string;
+    optional: boolean;
     
-    constructor(  name: string, label: string, type:string="text", disabled: boolean=false){
+    constructor(  name: string, label: string, type:string="text", parent: string="", optional=false){
         this.label = label===null || label===undefined?name:label;
         this.name = name;
         this.type = type;
-        this.disabled = disabled;
+        this.parent = parent;
+        this.optional = optional;
     }
 
 }

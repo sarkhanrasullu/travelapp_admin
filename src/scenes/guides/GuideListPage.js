@@ -7,14 +7,15 @@ const columns =
         new TableColumn("id"),
         new TableColumn("userId.name","name"),
         new TableColumn("userId.surname","surname"),
+        new TableColumn("userId.email","email"),
         new TableColumn("age"),
         new TableColumn("gender"),
         new TableColumn("phone"),   
-        new TableColumn("isVerified","Verified"),
         new TableColumn("price1","Baku"),
         new TableColumn("price2","Absheron"),
         new TableColumn("price3","Out of Absheron"),
         new TableColumn("userId.thumbnail","image","image"),
+        new TableColumn("isVerified","Verified"),
     ];
 const searchFields =[
     new TableColumn("userId.name","name"),

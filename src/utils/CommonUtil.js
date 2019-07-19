@@ -2,8 +2,9 @@ import React from 'react'
 
 export default class CommonUtil {
 
-    static imageFormatter = (cell) => {
-      return <img src={`data:image/png;base64, ${cell}`} alt="thumbnail" className="img-thumbnail" style={{width:120}}/>;
+    static imageFormatter = (data, column) => {
+      const url = column.type==="image_base64"?`data:image/png;base64, ${data}`:data;
+      return <img src={url} alt="thumbnail" className="img-thumbnail" style={{width:120}}/>;
     }
 
     static defaultFormatter = (cell, row) => {

@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { MDBTable,MDBIcon, MDBTableHead, MDBTableBody, MDBNavLink } from 'mdbreact';
+import { MDBTable,MDBIcon, MDBTableHead, MDBTableBody, MDBNavLink, MDBBtn} from 'mdbreact';
 import PaginationWrapper from '../UI/PaginationWrapper';
 import StateUtil from '../../utils/StateUtil';
 
@@ -50,11 +50,22 @@ export default class DataTableComponent extends Component {
         )
     }
 
+
+    handleAdd = ()=>{
+        window.location.href= this.props.endpoint+"/create";
+    }
+
+    renderAddButton = ()=>{
+        return (
+            <MDBBtn onClick={()=>{this.handleAdd()}}>Add</MDBBtn>
+        )
+    }
+
     renderBody(){
         const {data, columns} = this.props; 
         const result= data.map((row, index)=>{
             const resRow = columns.map((column, index)=>{
-                let data = StateUtil.renderData(row, column);
+                let data = StateUtil.renderData(row, column); 
                 if(data===null) return null;
                 return <td style={{height:10}} key={"btd"+index}>{data}</td>
             });
@@ -71,6 +82,7 @@ export default class DataTableComponent extends Component {
        const result = (
            <React.Fragment>
                <PaginationWrapper/>
+                {this.renderAddButton()}
                 <MDBTable bordered className={"table-sm"}>
                         <MDBTableHead>
                             {this.renderHeader()}

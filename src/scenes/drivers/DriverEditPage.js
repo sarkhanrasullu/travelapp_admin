@@ -4,31 +4,35 @@ import EntityEditPage from '../../components/entityeditpage/EntityEditPage';
 
 const formDataFields = 
     [
-        // new TableColumn("id"),
-        new TableColumn("_embedded.userId.thumbnail","Image","image_base64"),
+        new TableColumn("userId.thumbnail","Image","imagepicker"),
         new TableColumn(null,null,"empty"),
-        new TableColumn("driverLicenseBack","License Back","image_base64"),
-        new TableColumn("driverLicenseFront","License Front","image_base64"),
-        new TableColumn("_embedded.userId.name","name"),
-        new TableColumn("_embedded.userId.surname","surname"),
+        new TableColumn("userId.name","name"),
+        new TableColumn("userId.surname","surname"),
+        new TableColumn("userId.email","email"),
+        new TableColumn("userId.phone","phone"),
+        new TableColumn("userId.nationalityId.id","nationality"),
+        new TableColumn("userId.password", "password"),
+        new TableColumn("userId.roleId.id", "role"),
         new TableColumn("age"),
         new TableColumn("gender"),
-        new TableColumn("phone"),   
         new TableColumn("isVerified","Verified"),
         new TableColumn("price1","Baku"),
         new TableColumn("price2","Absheron"),
         new TableColumn("price3","Out of Absheron"),
         new TableColumn(null,null,"empty"),
         new TableColumn("about",null,"textarea"),
-      
-       
+        new TableColumn("driverLicenseBack","License Back","imagepicker"),
+        new TableColumn("driverLicenseFront","License Front","imagepicker"),
     ];
 
 class DriverEditPage extends Component {
     render() {
         return (
                 <EntityEditPage
-                    endpoint="drivers"
+                    endpoint="/admin/drivers"
+                    select_endpoint="/drivers"
+                    callback_url="/drivers"
+                    projection="driverProjection"
                     formDataFields={formDataFields}
                 />
         )

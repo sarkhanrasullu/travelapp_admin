@@ -29,7 +29,7 @@ class DynamicForm extends Component {
     sections.forEach((section)=>{
        const {items} = section;
        items.forEach((item)=>{
-         if(!item.name) return;
+         if(!item.name || item.type==="empty") return;
          validation[item.name] = false;
          if(!item.optional){
            const data = StateUtil.getFromObj(state.target, item.name);
@@ -56,6 +56,7 @@ class DynamicForm extends Component {
                         customComponent   ={item.customComponent}
                         type              ={item.type} 
                         label             ={item.label} 
+                        parent             ={item.parent} 
                         error             ={validation[item.name]} 
                         readOnly          ={readOnly} 
                         key               ={index} 
@@ -69,7 +70,7 @@ class DynamicForm extends Component {
     const sectionsComponent =  sections.map((section, index)=>{
         const items = section.items?section.items:[];
         const itemsComponent = items.map((item, index)=>{
-                return <MDBCol md={item.type==="textarea"?12:6} key={index}>{this.renderItem(item, index)}</MDBCol>; 
+                return <MDBCol md={item.type==="textarea"||item.type==="imagespicker"?12:6} key={index}>{this.renderItem(item, index)}</MDBCol>; 
         });
         return <MDBRow key={index}>{itemsComponent}</MDBRow>;
       });
@@ -87,9 +88,11 @@ class DynamicForm extends Component {
                     <div className="text-center">
                         <MDBBtn color="light-blue" onClick={()=>
                           {
+                            console.log(this.state);
                             if(this.state.validate()) {
                               this.props.submit.action(this.state.target)
                             }
+                            console.log(this.state.validation);
                           } 
                         }>
                             {this.props.submit.label}

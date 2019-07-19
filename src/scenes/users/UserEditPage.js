@@ -7,14 +7,18 @@ const formDataFields = [
     new TableColumn("surname"),
     new TableColumn("email"),
     new TableColumn("phone"),
-    new TableColumn("thumbnail",null, "image_base64"),
+    new TableColumn("password",null,"text",null,true),
+    new TableColumn("nationalityId.id","nationality"),
+    new TableColumn("roleId.id","role"),
+    new TableColumn("thumbnail",null, "imagepicker"),
 ];
 
 class UserEditPage extends Component {
     render() {
         return (
                 <EntityEditPage
-                    endpoint="users"
+                    endpoint="public/users"
+                    select_endpoint="users"
                     projection="userProjection"
                     callback_url="/users"
                     formDataFields={formDataFields}

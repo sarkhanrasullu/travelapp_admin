@@ -46,12 +46,14 @@ class EntityService extends CommonService {
       saveItem = (url, data, callback_url)=>{
         url = "/api/"+url;
         this.setLoading(true);
-        console.log(this.POST_HEADER(data));  
         fetch(url, this.POST_HEADER(data))
                 .then(response =>  response.json())
                 .then(response => { 
-                  console.log(response)
-                  window.location.reload();
+                  console.log(response);
+                  if(data.id>0)
+                    window.location.reload();
+                  else
+                   window.location.href=callback_url;
                   this.setLoading(false);
                 })
                 .catch((error) => {

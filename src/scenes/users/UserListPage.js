@@ -8,6 +8,7 @@ const columns = [
     new TableColumn("surname"),
     new TableColumn("email"),
     new TableColumn("phone"),
+    new TableColumn("thumbnail",null, "image"),
     new TableColumn("lastchangedate")
 ];
 

@@ -13,11 +13,18 @@ class EntityEditPage extends Component {
   entityService = new EntityService(this);
 
   componentDidMount() {
-     this.entityService.loadItem(this.props.endpoint+"/"+this.props.match.params.entityId, this.props.projection);
+      const edit = this.props.match.params.entityId>0;
+      console.log("edit="+edit);
+      if(edit){
+        const endpoint = this.props.select_endpoint?this.props.select_endpoint:this.props.endpoint;
+        this.entityService.loadItem(endpoint+"/"+this.props.match.params.entityId, this.props.projection);
+      }
   }
 
-  handleSubmitBtn=() =>{
-    this.entityService.saveItem(this.props.endpoint, this.state.target, this.props.callback_url);
+  handleSubmitBtn=(target) =>{
+    console.log('save');
+    console.log(target);
+    this.entityService.saveItem(this.props.endpoint, target, this.props.callback_url);
   }
 
   render() {
