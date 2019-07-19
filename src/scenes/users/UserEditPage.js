@@ -17,7 +17,7 @@ class UserEditPage extends Component {
     render() {
         return (
                 <EntityEditPage
-                    endpoint="public/users"
+                    endpoint="admin/users"
                     select_endpoint="users"
                     projection="userProjection"
                     callback_url="/users"
