@@ -3,3 +3,9 @@ export {
 } from './loading'
 
 
+export { 
+    setBrands,
+    setModels
+} from './entities'
+
+

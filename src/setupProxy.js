@@ -4,7 +4,7 @@ const filter = (pathname, req) => {
   const result= pathname.match('^/api');
   return result;
 };
-//https://tripescorestapi.herokuapp.com/api
+//http://tripescorestapi.herokuapp.com
 const myproxy = proxy(filter, { target: "http://tripescorestapi.herokuapp.com", changeOrigin: true });
 
 module.exports = app => {

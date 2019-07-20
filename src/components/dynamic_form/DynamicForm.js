@@ -11,7 +11,8 @@ class DynamicForm extends Component {
   state = {
       validate: ()=>this.validate(),
       validation: {},
-      target: {}
+      target: {},
+      carUtilities: []
   }
 
   componentWillReceiveProps(p, n){
@@ -89,9 +90,9 @@ class DynamicForm extends Component {
                         <MDBBtn color="light-blue" onClick={()=>
                           {
                             console.log(this.state);
-                            if(this.state.validate()) {
-                              this.props.submit.action(this.state.target)
-                            }
+                            // if(this.state.validate()) {
+                            //   this.props.submit.action(this.state.target)
+                            // }
                             console.log(this.state.validation);
                           } 
                         }>

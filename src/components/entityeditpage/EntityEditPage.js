@@ -4,21 +4,24 @@ import { MDBRow, MDBCol, MDBContainer } from "mdbreact";
 import EntityService from "../../services/EntityService";
 import { withRouter } from "react-router-dom";
 import LoadingSpinner from "../spinner/LoadingSpinner";
+import {connect} from 'react-redux';
+import {setModels, setBrands} from './../../store/actions/index'
 
 class EntityEditPage extends Component {
-  state = {
-    target: {}
-  };
 
+  state = {
+    loading: true
+  }
   entityService = new EntityService(this);
 
   componentDidMount() {
       const edit = this.props.match.params.entityId>0;
-      console.log("edit="+edit);
+      this.entityService.loadBrands(this);
       if(edit){
         const endpoint = this.props.select_endpoint?this.props.select_endpoint:this.props.endpoint;
         this.entityService.loadItem(endpoint+"/"+this.props.match.params.entityId, this.props.projection);
       }
+
   }
 
   handleSubmitBtn=(target) =>{

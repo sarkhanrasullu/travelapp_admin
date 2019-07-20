@@ -19,7 +19,7 @@ export default class DefaultFormInput extends Component {
                               disabled={readOnly}  
                               placeholder={placeholder} 
                               value={currentValue} 
-                              style={error ? style.errorInput:null} 
+                              style={error ? style.errorInput:style.defaultInput} 
                               getValue={(val)=>{ 
                                 StateUtil.handleFieldChange(this, val);
                               }

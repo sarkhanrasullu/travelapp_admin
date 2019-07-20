@@ -20,9 +20,14 @@ const formDataFields =
         new TableColumn("price2","Absheron"),
         new TableColumn("price3","Out of Absheron"),
         new TableColumn(null,null,"empty"),
-        new TableColumn("about",null,"textarea"),
-        new TableColumn("driverLicenseBack","License Back","imagepicker"),
         new TableColumn("driverLicenseFront","License Front","imagepicker"),
+        new TableColumn("driverLicenseBack","License Back","imagepicker"),
+        // new TableColumn("carList.0.productionYear","Production Year"),
+        // new TableColumn(null,null,"empty"),
+        // new TableColumn("carList.0.modelId.brandId.id","Brand","brandpicker"),
+        // new TableColumn("carList.0.modelId.id","Model","modelpicker"),
+        // new TableColumn("carList.0.carCarUtilityList","Car Utilities","carutilitypicker"),
+        new TableColumn("about",null,"textarea"),
     ];
 
 class DriverEditPage extends Component {

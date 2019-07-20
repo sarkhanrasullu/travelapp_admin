@@ -12,7 +12,8 @@ import DefaultFormInput from '../defaultforminput/DefaultFormInput';
 import MyImagesPicker from '../myimagespicker/MyImagesPicker';
 
 const style = {
-  errorInput: {borderColor:"red", borderWidth:1}
+  errorInput: {borderColor:"red", borderWidth:1, fontSize:16, fontWeight:"bold"},
+  defaultInput: {fontSize:16, fontWeight:"bold"}
 };
 
 export default class FormInput extends Component {
@@ -27,10 +28,10 @@ export default class FormInput extends Component {
         const inputComponent = this.getInputComponent();
         
         const result = unwrap?inputComponent:
-                <View key={key}>
-                  {label?<span  style={error ? style.errorInput:null} >{label+(optional?"":" (*)")} </span>:null}
+                <div key={key} >
+                  {label?<span  style={error ? style.errorInput:style.defaultInput} >{label+(optional?"":" (*)")} </span>:null}
                   {inputComponent}
-                </View>
+                </div>
         return result;        
     }
 
@@ -43,23 +44,23 @@ export default class FormInput extends Component {
       if(type==="text" || type==="textarea"||type==="password"){
         result.push(<DefaultFormInput key={key} placeholder={placeholder} type={type} readOnly={readOnly} error={error} component={component} name={name} />);
       }else if(type==="nationalitypicker"){
-        result.push(<NationalityPicker readOnly={readOnly} error={error} component={component} name={name}/>);
+        result.push(<NationalityPicker key={key} readOnly={readOnly} error={error} component={component} name={name}/>);
       }else if(type === "imagepicker" || type === "image_base64"){
-        result.push(<MyImagePicker readOnly={readOnly} error={error} component={component} name={name} type={type}/>);
+        result.push(<MyImagePicker key={key} readOnly={readOnly} error={error} component={component} name={name} type={type}/>);
       }else if(type === "imagespicker"){
-        result.push(<MyImagesPicker parent={parent} readOnly={readOnly} error={error} component={component} name={name} type={type}/>);
+        result.push(<MyImagesPicker key={key} parent={parent} readOnly={readOnly} error={error} component={component} name={name} type={type}/>);
       }else if(type === "brandpicker"){
-        result.push(<BrandPicker readOnly={readOnly} error={error} component={component} name={name}/>);
+        result.push(<BrandPicker key={key} readOnly={readOnly} error={error} component={component} name={name}/>);
       }else if(type === "modelpicker"){
-        result.push(<ModelPicker readOnly={readOnly} error={error} component={component} name={name} />);
+        result.push(<ModelPicker key={key} readOnly={readOnly} error={error} component={component} name={name} />);
       }else if(type === "carutilitypicker"){
-        result.push(<CarUtilityPicker readOnly={readOnly} error={error} component={component} name={name} />);
+        result.push(<CarUtilityPicker key={key} readOnly={readOnly} error={error} component={component} name={name} />);
       }else if(type === "educationpicker"){
-        result.push(<EducationPicker readOnly={readOnly} error={error} component={component} name={name} />);
+        result.push(<EducationPicker key={key} readOnly={readOnly} error={error} component={component} name={name} />);
       }else if(type === "genderpicker"){
-        result.push(<GenderPicker readOnly={readOnly} error={error} component={component} name={name} />);
+        result.push(<GenderPicker key={key} readOnly={readOnly} error={error} component={component} name={name} />);
       }else if(type === "mappicker"){
-        result.push(<MapPicker readOnly={readOnly} error={error} component={component} name={name} />);
+        result.push(<MapPicker key={key} readOnly={readOnly} error={error} component={component} name={name} />);
       }else if(type === "custom"){
         result.push(customComponent);
       } 

@@ -5,7 +5,7 @@ import FormInput from '../forminput/FormInput';
 
 export default class MyImagePicker extends Component {
     render() {
-        const { error, readOnly, type, component, name } = this.props;
+        const { error, readOnly, type, component, name, key } = this.props;
         const value = StateUtil.get(component.state, name);
         let result = value;
         if(value===null || !value || value.trim().length===0) {
@@ -17,9 +17,9 @@ export default class MyImagePicker extends Component {
         } 
 
         return (
-        <React.Fragment>
-            <Image image={result} onDelete={this.props.onDelete}/>
-            <FormInput 
+        <React.Fragment key={key}>
+            <Image image={result} onDelete={this.props.onDelete} key={1}/>
+            <FormInput key={2}
                         component         ={component} 
                         name              ={name} 
                         type              ={"text"} 

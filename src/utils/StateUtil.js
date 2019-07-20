@@ -32,14 +32,14 @@ export default class StateUtil {
             const {name, component} = owner.props;
             if(name && component){
                 const st = component.state;
-//                 console.log(name);
-//                 console.log(st);
-//                 console.log(val);
-// console.log('-------')
+                console.log(name);
+                console.log(st);
+                console.log(val);
+                console.log('-------')
                 StateUtil.set(name, st, val);
                 component.setState(st);
-                // console.log(component);
-                // console.log(component.state);
+                console.log(component);
+                console.log(component.state);
             }
         };
 
