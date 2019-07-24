@@ -4,13 +4,11 @@ import { MDBRow, MDBCol, MDBContainer } from "mdbreact";
 import EntityService from "../../services/EntityService";
 import { withRouter } from "react-router-dom";
 import LoadingSpinner from "../spinner/LoadingSpinner";
-import {connect} from 'react-redux';
-import {setModels, setBrands} from './../../store/actions/index'
 
 class EntityEditPage extends Component {
 
   state = {
-    loading: true
+    loading: false
   }
   entityService = new EntityService(this);
 
