@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import EntityListPage from '../../components/entitylistpage/EntityListPage';
-import { TableColumn } from '../../components/datatable/DataTableTypes';
+import {TableColumn, InputField} from '../../components/react_multiplatform_components';
+import { InputFieldType } from '../../components/react_multiplatform_components/src/datatable/DataTableTypes';
 
 const columns = [
     new TableColumn("id"),
@@ -9,20 +10,25 @@ const columns = [
     new TableColumn("issued"),
 ];
 
+const fields = [
+    {
+      items: [
+        new InputField("text"),
+        new InputField("insertDate","date", InputFieldType.DATE_TIME)
+      ]
+    }
+  ];
+
 export default class FeedbackListPage extends Component {
     render() {
         return (
                 <EntityListPage
-                    endpoint="/feedbacks"
-                    searchDataFields={[
-                        new TableColumn("text"),
-                        new TableColumn("insertDate","date")
-                    ]}
-                    tableProps= {
-                        {
-                            columns: columns
-                        }
-                    }
+                    endpoint_select="/api/feedbacks"
+                    endpoint_delete="/api/feedbacks"
+                    searchFields={fields}
+                    tableProps={{
+                        columns: columns
+                    }}
                     
                 />
         )

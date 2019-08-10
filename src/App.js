@@ -58,7 +58,7 @@ class App extends Component {
             <Route component={UserListPage} />
           </Switch>:    
           <Switch>
-            <Route exact path="/" component={Login} />
+            <Route path="/" component={Login} />
           </Switch>
         }
       </MainPageContainer>        

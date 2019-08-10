@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { TableColumn } from '../../components/datatable/DataTableTypes';
+import {TableColumn} from '../../components/react_multiplatform_components';
 import EntityEditPage from '../../components/entityeditpage/EntityEditPage';
 
 const formDataFields = 

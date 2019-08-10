@@ -1,64 +1,77 @@
 import CommonService from './CommonService';
-import StateUtil from '../utils/StateUtil';
 
 class EntityService extends CommonService {
-    
-        constructor(component){
+  
+        endpoint_crud = null;
+        endpoint_select = null;
+        endpoint_add_or_save = null;
+        endpoint_delete = null;
+
+        constructor(component, endpoint_select, endpoint_add_or_save, endpoint_delete){
             super(component);
+              this.endpoint_select = endpoint_select;
+              this.endpoint_add_or_save = endpoint_add_or_save;
+              this.endpoint_delete = endpoint_delete;
         }
      
-       loadItems = (url)=>{
-         url = "/api/"+url;
-        
-        this.setLoading(true);
-        fetch(url)
-                .then(response =>  response.json())
-                .then(response => {
-                  const firstElementKey = Object.keys(response._embedded)[0];
-                  const data = response._embedded[firstElementKey];
-                  const state = this.component.state;
-                  state.list = data;
-                  state.page = response.page;
-                  this.setLoading(false);
-
-                  this.component.setState(state);
-                })
-                .catch((error) => {
-                });
-      }
-
-      loadItem = (url, projection)=>{
-        url = "/api/"+url+"?projection="+projection;
-        this.setLoading(true);
-        fetch(url)
-                .then(response =>  response.json())
-                .then(response => {
-                  console.log(response)
-                  const state = this.component.state;
-                  state.target = response;
-                  this.setLoading(false);
-                  this.component.setState(state);
-                })
-                .catch((error) => {
-                });
-      }
+        loadItems = (url)=>{
+          this.setLoading(true);
+          fetch(url?url:this.endpoint_select)
+                  .then(response =>  response.json())
+                  .then(response => {
+                    const firstElementKey = Object.keys(response._embedded)[0];
+                    const data = response._embedded[firstElementKey];
+                    const state = this.component.state;
+                    state.list = data;
+                    state.page = response.page;
+                    this.component.setState(state);
+                    this.setLoading(false);
+                  })
+                  .catch((error) => {
+                    this.setLoading(false);
+                  });
+        }
+  
+        loadItem = (id)=>{
+          this.setLoading(true);
+          fetch(this.endpoint_select.replace("{id}",id))
+                  .then(response =>  response.json())
+                  .then(response => {
+                    const state = this.component.state;
+                    state.target = response;
+                    this.setLoading(false);
+                    this.component.setState(state);
+                  })
+                  .catch((error) => {
+                  });
+        }
       
-      saveItem = (url, data, callback_url)=>{
-        url = "/api/"+url;
-        this.setLoading(true);
-        fetch(url, this.POST_HEADER(data))
-                .then(response =>  response.json())
-                .then(response => { 
-                  console.log(response);
-                  if(data.id>0)
-                    window.location.reload();
-                  else
-                   window.location.href=callback_url;
-                  this.setLoading(false);
-                })
-                .catch((error) => {
-                });
-      }
+        saveItem = (data, callback_url)=>{
+          this.setLoading(true);
+          fetch(this.endpoint_add_or_save+(data.id?"/"+data.id:""), data.id? this.PUT_HEADER(data): this.POST_HEADER(data))
+                  // .then(response =>  response.json())
+                  .then(response => { 
+                    if(data.id>0)
+                      window.location.reload();
+                    else
+                     window.location.href=callback_url;
+                    this.setLoading(false);
+                  })
+                  .catch((error) => {
+                  });
+        }
+  
+        removeItem = (id)=>{
+          this.setLoading(true);
+          fetch(this.endpoint_delete+"/"+id, this.DELETE_HEADER())
+                  .then(response => { 
+                    console.log(response);
+                    console.log('here');
+                      this.loadItems();
+                  })
+                  .catch((error) => {
+                  });
+        }
 
      loadCarUtilities = ()=>{
         fetch(`/api/carUtilities`, this.GET_HEADER())

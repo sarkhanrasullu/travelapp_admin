@@ -2,9 +2,21 @@ import React, { Component } from "react";
 import { MDBRow, MDBCol, MDBContainer } from "mdbreact";
 import * as actions from "../../store/actions/index";
 import { connect } from "react-redux";
-import DynamicForm from "../../components/dynamic_form/DynamicForm";
 import LoginService from "../../services/LoginService";
-import LoadingSpinner from "../../components/spinner/LoadingSpinner";
+import {DynamicForm, LoadingSpinner, InputField} from "../../components/react_multiplatform_components";
+
+const formFields = [
+  {
+    rows:[
+        {
+          items:[
+            new InputField("target.user.email","email"),
+            new InputField("target.user.password", "password", "password"),
+          ]
+        }
+    ]
+  }
+];
 
 class Login extends Component {
 
@@ -25,17 +37,7 @@ class Login extends Component {
             <MDBCol md="3" />
             <MDBCol md="6">
             <DynamicForm 
-                      component={this}
-                      sections={
-                          [
-                            {
-                              items:[
-                                { name:"user.email", label:"Email", type:"text" },
-                                { name:"user.password", label:"Password", type: "password" }
-                              ]
-                            }          
-                          ]
-                      }
+                      sections={formFields}
                       submit={
                           {
                               label: "Login",

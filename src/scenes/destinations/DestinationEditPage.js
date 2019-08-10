@@ -1,26 +1,49 @@
 import React, { Component } from 'react'
-import { TableColumn } from '../../components/datatable/DataTableTypes';
+import {InputField} from '../../components/react_multiplatform_components';
 import EntityEditPage from '../../components/entityeditpage/EntityEditPage';
+import { InputFieldType } from '../../components/react_multiplatform_components/src/datatable/DataTableTypes';
 
-const formDataFields = [
-    new TableColumn("name"),
-    new TableColumn("distance",null, "text",null, true),
-    new TableColumn("reviewCount",null, "text",null, true),
-    new TableColumn("reviewAvg",null, "text",null, true),
-    new TableColumn(null,null,"empty"),
-    new TableColumn("about",null,"textarea"),
-    new TableColumn("placeMediafileList",null,"imagespicker", "placeId", true),
+const rows = [
+    {
+        items:[
+            new InputField("target.name","name")
+        ]
+    },
+    {
+        items:[
+            new InputField("target.distance","distance", InputFieldType.TEXT,null, true),
+        ]
+    },
+    {
+        items:[
+            new InputField("target.reviewCount","review count", InputFieldType.TEXT,null, true),
+        ]
+    },
+    {
+        items:[
+            new InputField("target.reviewAvg","review avg", InputFieldType.TEXT,null, true),
+        ]
+    },
+    {
+        items:[
+            new InputField("target.about","about",InputFieldType.TEXT_AREA),
+        ]
+    },
+    {
+        items:[
+            new InputField("target.placeMediafileList","images",InputFieldType.IMAGE_URL_MULTIPLE, true,"placeId.id")
+        ]
+    }
 ];
+
 
 class DestinationEditPage extends Component {
     render() {
         return (
                 <EntityEditPage
-                    endpoint="/admin/places"
-                    select_endpoint="/places"
-                    callback_url="/places"
-                    projection="placeProjection"
-                    formDataFields={formDataFields}
+                    endpoint_select="/api/places/{id}?projection=placeProjection"
+                    endpoint_add_or_save="/api/places"
+                    formFields={rows}
                 />
         )
     }

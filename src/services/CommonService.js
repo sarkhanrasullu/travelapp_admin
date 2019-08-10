@@ -4,7 +4,6 @@ import commonAxios from './CommonAxios';
 
 const querystring = require('querystring');
 
-
 class CommonService{
     commonAxios = commonAxios;
 
@@ -57,19 +56,25 @@ class CommonService{
           method: "POST",
           headers: this.TOKEN_HEADER(),
           body: JSON.stringify(data)
+        }
       }
-    }
 
     PUT_HEADER = (data) =>{
       return{
         method: "PUT",
         headers: this.TOKEN_HEADER(),
         body: JSON.stringify(data)
+      }
     }
-  }
+
+    DELETE_HEADER = () =>{
+      return{
+        method: "DELETE",
+        headers: this.TOKEN_HEADER()
+      }
+    }
       
     navigate = (url)=>{
-      console.log('url:'+url)
       const {props} = this.component;
       props.history.push(url)
     }
@@ -83,8 +88,7 @@ class CommonService{
     }
 
     getLoggedInUser = ()=>{
-       return this.get(Constants.const_logged_in_user);
-      // return true;
+        return this.get(Constants.const_logged_in_user);
     }
 
     setLoggedInUser = (user)=>{

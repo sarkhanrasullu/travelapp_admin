@@ -1,53 +1,62 @@
 import React, { Component } from 'react'
-import DataTableComponent from '../datatable/DataTableComponent';
-import DynamicForm from '../dynamic_form/DynamicForm';
+import {DataTableComponent, DynamicForm, LoadingSpinner} from '../react_multiplatform_components';
 import EntityService from '../../services/EntityService';
-import LoadingSpinner from '../spinner/LoadingSpinner';
-
 
 class EntityListPage extends Component {
+  
     state = {
       list:[],
       page:1,
       loading: true
     }
     
-    service_entity = new EntityService(this);
+    service_entity = new EntityService(this, this.props.endpoint_select, this.props.endpoint_add_or_save, this.props.endpoint_delete);
 
     componentDidMount(){
-        this.service_entity.loadItems(this.props.endpoint);
+        this.service_entity.loadItems();
     }
 
     renderBody = ()=>{
-      const {endpoint} = this.props;
       const {columns} = this.props.tableProps;
       const {list} = this.state;
       if(this.state.loading){
         return <LoadingSpinner/>;
       }else{
            return <DataTableComponent 
-                endpoint={endpoint}
+                handleRemove={this.handleRemove}
+                handleAdd={this.handleAdd}
+                handleEdit={this.handleEdit}
                 data={list}  
                 columns={columns} />
       }
     }
+
+    handleRemove = (data)=>{
+      this.service_entity.removeItem(data.id)
+    }
+
+    handleAdd = ()=>{
+      window.location.href= window.location.href+"/create";
+    }
+
+    handleEdit = (id)=>{
+      window.location.href= window.location.href+"/"+id;
+    }
+
     render() {
-        
-       
         return (
-          <React.Fragment>
-            <DynamicForm 
-                sections={
-                  [
-                    { 
-                      items: this.props.searchDataFields
-                    }
-                  ]
-                }
-                submit={{label:"Search", action:null}}/>
-                {this.renderBody()}
-        </React.Fragment> 
-            
+            <React.Fragment>
+              <DynamicForm 
+                  sections={
+                    [
+                      { 
+                        rows: this.props.searchFields
+                      }
+                    ]
+                  }
+                  submit={{label:"Search", action:null}}/>
+                  {this.renderBody()}
+          </React.Fragment> 
         )
     }
 }

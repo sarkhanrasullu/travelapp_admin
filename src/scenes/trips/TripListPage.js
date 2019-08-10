@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import EntityListPage from '../../components/entitylistpage/EntityListPage';
-import { TableColumn } from '../../components/datatable/DataTableTypes';
+import {TableColumn, InputField} from '../../components/react_multiplatform_components';
+import { TableColumnType } from '../../components/react_multiplatform_components/src/datatable/DataTableTypes';
 
 const columns = [
     new TableColumn("id"),
@@ -9,31 +10,34 @@ const columns = [
     new TableColumn("userId.email","email"),
     new TableColumn("userId.phone","phone"),   
     new TableColumn("userId.nationalityId.name","nationality"),
-    new TableColumn("pickupDate","pickup date"),
-    new TableColumn("pickupTime","pickup time"),
+    new TableColumn("pickupDate","pickup date", TableColumnType.DATE_TIME),
+    new TableColumn("pickupTime","pickup time", TableColumnType.DATE_TIME),
     new TableColumn("placeId.name","place"),
-    new TableColumn("insertDate","insert date"),
-    new TableColumn("lastchangedate"),
+    new TableColumn("insertDate","insert date", TableColumnType.DATE_TIME),
+    new TableColumn("lastchangedate", TableColumnType.DATE_TIME),
 ];
 
-const searchFields = [
-    new TableColumn("name"),
-    new TableColumn("surname"),
-    new TableColumn("email"),
-    new TableColumn("phone"),   
-];
+const fields = [
+    {
+      items: [
+        new InputField("target.name", "name"),
+        new InputField("target.surname", "surname"),
+        new InputField("target.email", "email"),
+        new InputField("target.phone", "phone"),   
+      ]
+    }
+  ];
 
 export default class TripListPage extends Component {
     render() {
         return (
                 <EntityListPage
-                    endpoint="/trips"
-                    searchDataFields={searchFields}
-                    tableProps= {
-                        {
-                            columns: columns
-                        }
-                    }
+                    endpoint_select="/api/trips"
+                    endpoint_delete="/api/trips"
+                    searchFields={fields}
+                    tableProps={{
+                        columns: columns
+                    }}
                     
                 />
         )

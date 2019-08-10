@@ -11,7 +11,7 @@ import {
 import { connect } from "react-redux";
 import LoginService from "../../services/LoginService";
 
-class NavbarWrapper extends Component {
+class Navbar extends Component {
   service_login = new LoginService(this);
   state = {
     isOpen: false,
@@ -90,4 +90,4 @@ const mapDispatchToProps = dispatch => {
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(NavbarWrapper);
+)(Navbar);

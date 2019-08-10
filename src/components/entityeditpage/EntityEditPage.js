@@ -1,49 +1,53 @@
 import React, { Component } from "react";
-import DynamicForm from "../dynamic_form/DynamicForm";
+import {DynamicForm, LoadingSpinner} from "../react_multiplatform_components";
 import { MDBRow, MDBCol, MDBContainer } from "mdbreact";
 import EntityService from "../../services/EntityService";
 import { withRouter } from "react-router-dom";
-import LoadingSpinner from "../spinner/LoadingSpinner";
 
 class EntityEditPage extends Component {
 
   state = {
-    loading: false
+    loading: false,
+    target:{}
   }
-  entityService = new EntityService(this);
+
+  entityService = new EntityService(this, this.props.endpoint_select, this.props.endpoint_add_or_save);
 
   componentDidMount() {
       const edit = this.props.match.params.entityId>0;
-      this.entityService.loadBrands(this);
       if(edit){
-        const endpoint = this.props.select_endpoint?this.props.select_endpoint:this.props.endpoint;
-        this.entityService.loadItem(endpoint+"/"+this.props.match.params.entityId, this.props.projection);
+        this.entityService.loadItem(this.props.match.params.entityId);
       }
+  }
 
+  getRedirectUrl = ()=>{
+    var arr = window.location.href.split('/');
+    var lastOne = "/"+arr[arr.length-1];
+    var redirect_url = window.location.href.replace(lastOne,"");
+    return redirect_url;
   }
 
   handleSubmitBtn=(target) =>{
-    console.log('save');
-    console.log(target);
-    this.entityService.saveItem(this.props.endpoint, target, this.props.callback_url);
+    this.entityService.saveItem(target, this.getRedirectUrl());
   }
 
   render() {
     if(this.state.loading){
       return <LoadingSpinner/>;
     }
+
+    const {fullscreen} = this.props;
     
     return (
       <MDBContainer style={{ margin: "auto"}}>
         <MDBRow>
-            <MDBCol md={3}></MDBCol>
-            <MDBCol md={6}>
+            {fullscreen?null:<MDBCol md={3}></MDBCol>}
+            <MDBCol md={fullscreen?12:6}>
                 <DynamicForm
-                  component={this}
                   target={this.state.target}
                   sections={[
                     {
-                      items: this.props.formDataFields
+                      rows: this.props.formFields
                     }
                   ]}
                   submit={{

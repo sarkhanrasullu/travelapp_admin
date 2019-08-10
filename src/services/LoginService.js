@@ -1,6 +1,5 @@
 import CommonService from './CommonService';
 import Constants from './Constants';
-import Settings from './Settings';
 
 class LoginService extends CommonService {
 

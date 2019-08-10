@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { TableColumn } from '../../components/datatable/DataTableTypes';
+import {TableColumn} from '../../components/react_multiplatform_components';
 import EntityEditPage from '../../components/entityeditpage/EntityEditPage';
 
 const formDataFields = 
@@ -22,11 +22,6 @@ const formDataFields =
         new TableColumn(null,null,"empty"),
         new TableColumn("driverLicenseFront","License Front","imagepicker"),
         new TableColumn("driverLicenseBack","License Back","imagepicker"),
-        // new TableColumn("carList.0.productionYear","Production Year"),
-        // new TableColumn(null,null,"empty"),
-        // new TableColumn("carList.0.modelId.brandId.id","Brand","brandpicker"),
-        // new TableColumn("carList.0.modelId.id","Model","modelpicker"),
-        // new TableColumn("carList.0.carCarUtilityList","Car Utilities","carutilitypicker"),
         new TableColumn("about",null,"textarea"),
     ];
 
