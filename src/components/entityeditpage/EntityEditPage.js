@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import {DynamicForm, LoadingSpinner} from "../react_multiplatform_components";
+import {DynamicForm, LoadingSpinner} from "../react_multiplatform_components2";
 import { MDBRow, MDBCol, MDBContainer } from "mdbreact";
 import EntityService from "../../services/EntityService";
 import { withRouter } from "react-router-dom";
