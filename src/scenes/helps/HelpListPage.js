@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import EntityListPage from '../../components/entitylistpage/EntityListPage';
 import {TableColumn, InputField} from '../../components/react_multiplatform_components';
-import { InputFieldType, TableColumnType } from '../../components/react_multiplatform_components/src/datatable/DataTableTypes';
+import { InputFieldType, TableColumnType } from '../../components/react_multiplatform_components';
 
 const columns = [
     new TableColumn("id"),

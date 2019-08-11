@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import {InputField, InputFieldType} from '../../components/react_multiplatform_components';
 import EntityEditPage from '../../components/entityeditpage/EntityEditPage';
-import { SelectBox } from '../../components/react_multiplatform_components/src/datatable/DataTableTypes';
+import { SelectBox } from '../../components/react_multiplatform_components';
 
 
 const rows = [
