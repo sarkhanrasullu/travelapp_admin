@@ -1,0 +1,28 @@
+.picker{
+    height:28px; 
+    width:100%;
+    border: 0;
+    outline: 1px solid #CCC;
+    background-color: white;
+    margin-top: 13px;
+  }
+  .pickerText{
+    padding-left:5
+  }
+  .pickerPlaceHolder{
+    color:"#666666"; padding-left: 5 
+  }
+  .pickerPlaceHolderError{
+    color:"red"; padding-left: 5 
+  }
+.sectionInput {
+    width: 100%;
+    border-width: 0.3;
+    border-radius: 2;
+    height: 40;
+    margin-top: 10;
+}
+.errorInput {
+    border-color:"red"; 
+    border-width:1px
+}
