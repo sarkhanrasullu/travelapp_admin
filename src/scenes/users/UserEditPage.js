@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import {TableColumn, InputFieldType, InputField} from '../../components/react_multiplatform_components';
+import {InputFieldType, InputField} from '../../components/react_multiplatform_components';
 import EntityEditPage from '../../components/entityeditpage/EntityEditPage';
 import { SelectBox } from '../../components/react_multiplatform_components';
 
