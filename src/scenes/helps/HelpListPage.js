@@ -1,23 +1,29 @@
 import React, { Component } from 'react'
 import EntityListPage from '../../components/entitylistpage/EntityListPage';
 import {TableColumn, InputField} from '../../components/react_multiplatform_components';
-import { InputFieldType } from '../../components/react_multiplatform_components/src/datatable/DataTableTypes';
+import { InputFieldType, TableColumnType } from '../../components/react_multiplatform_components/src/datatable/DataTableTypes';
 
 const columns = [
     new TableColumn("id"),
-    new TableColumn("text",null, "textarea"),
+    new TableColumn("text"),
     new TableColumn("email"),
     new TableColumn("issued"),
-    new TableColumn("insertDate"),
+    new TableColumn("insertDate", "insert date", TableColumnType.DATE_TIME),
 ];
 
 const fields = [
-    {
-      items: [
-        new InputField("text"),
-        new InputField("insertDate","date", InputFieldType.DATE_TIME)
-      ]
-    }
+  {
+    items: [
+      new InputField("email"),
+      null,
+      null,null
+    ]
+  },
+  {
+    items: [
+      new InputField("insertDate","date", InputFieldType.DATE_TIME)
+    ]
+  }
   ];
 
 export default class HelpListPage extends Component {

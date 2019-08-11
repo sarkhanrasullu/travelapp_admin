@@ -10,8 +10,7 @@ const columns = [
 const fields = [
     {
       items: [
-        new InputField("id"),
-        new InputField("name")
+        new InputField("name"),null,null,null,null
       ]
     }
   ];

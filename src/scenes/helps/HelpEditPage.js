@@ -1,22 +1,32 @@
 import React, { Component } from 'react'
-import {TableColumn} from '../../components/react_multiplatform_components';
+import {InputField, InputFieldType} from '../../components/react_multiplatform_components';
 import EntityEditPage from '../../components/entityeditpage/EntityEditPage';
 
-const formDataFields = [
-    new TableColumn("email"),
-    new TableColumn("issued"),
-    new TableColumn("text",null, "textarea"),
-
-];
+const rows = [
+    {
+        items:[
+            new InputField("target.email","email"),
+        ]
+    },
+    {
+        items:[
+            new InputField("target.text","message", InputFieldType.TEXT_AREA),
+        ]
+    },
+    {
+        items:[
+            new InputField("target.issued", "issued", InputFieldType.CHECK_BOX),
+        ]
+    },
+]
 
 class HelpEditPage extends Component {
     render() {
         return (
                 <EntityEditPage
-                    endpoint="/helps"
-                    callback_url="/helps"
-                    projection="helpProjection"
-                    formDataFields={formDataFields}
+                    endpoint_select="/api/helps/{id}?projection=helpProjection"
+                    endpoint_add_or_save="/api/helps"
+                    formFields={rows}
                 />
         )
     }

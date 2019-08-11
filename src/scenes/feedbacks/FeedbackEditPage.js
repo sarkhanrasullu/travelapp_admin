@@ -1,22 +1,27 @@
 import React, { Component } from 'react'
-import {TableColumn} from '../../components/react_multiplatform_components';
+import {InputFieldType, InputField} from '../../components/react_multiplatform_components';
 import EntityEditPage from '../../components/entityeditpage/EntityEditPage';
 
-const formDataFields = [
-    new TableColumn("email"),
-    new TableColumn("issued"),
-    new TableColumn("text",null, "textarea"),
-
-];
+const rows = [
+    {
+        items:[
+            new InputField("target.text","message", InputFieldType.TEXT_AREA),
+        ]
+    },
+    {
+        items:[
+            new InputField("target.issued", "issued", InputFieldType.CHECK_BOX),
+        ]
+    },
+]
 
 class FeedbackEditPage extends Component {
     render() {
         return (
                 <EntityEditPage
-                    endpoint="/feedbacks"
-                    callback_url="/feedbacks"
-                    projection="feedbackProjection"
-                    formDataFields={formDataFields}
+                    endpoint_select="/api/feedbacks/{id}?projection=feedbackProjection"
+                    endpoint_add_or_save="/api/feedbacks"
+                    formFields={rows}
                 />
         )
     }

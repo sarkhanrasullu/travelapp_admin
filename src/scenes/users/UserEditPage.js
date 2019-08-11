@@ -1,27 +1,59 @@
 import React, { Component } from 'react'
-import {TableColumn} from '../../components/react_multiplatform_components';
+import {TableColumn, InputFieldType, InputField} from '../../components/react_multiplatform_components';
 import EntityEditPage from '../../components/entityeditpage/EntityEditPage';
+import { SelectBox } from '../../components/react_multiplatform_components/src/datatable/DataTableTypes';
 
-const formDataFields = [
-    new TableColumn("name"),
-    new TableColumn("surname"),
-    new TableColumn("email"),
-    new TableColumn("phone"),
-    new TableColumn("password",null,"text",null,true),
-    new TableColumn("nationalityId.id","nationality"),
-    new TableColumn("roleId.id","role"),
-    new TableColumn("thumbnail",null, "imagepicker"),
+const rows = [
+    {
+        items:[
+            new InputField("target.name","name")
+        ]
+    },
+    {
+        items:[
+            new InputField("target.surname","surname")
+        ]
+    },
+    {
+        items:[
+            new InputField("target.email","email")
+        ]
+    },
+    {
+        items:[
+            new InputField("target.phone","phone")
+        ]
+    },
+    {
+        items:[
+            new InputField("target.password","password", InputFieldType.PASSWORD)
+        ]
+    },
+    {
+        items:[
+            new SelectBox("target.nationalityId.id","nationality",'/api/nationalities','id','name')
+        ]
+    },
+    {
+        items:[
+            new SelectBox("target.roleId.id","role", '/api/userRoles',"id","name")
+        ]
+    },
+    {
+        items:[
+            new InputField("target.thumbnail","thumbnail", InputFieldType.IMAGE_URL),
+            null
+        ]
+    },
 ];
 
 class UserEditPage extends Component {
     render() {
         return (
                 <EntityEditPage
-                    endpoint="admin/users"
-                    select_endpoint="users"
-                    projection="userProjection"
-                    callback_url="/users"
-                    formDataFields={formDataFields}
+                    endpoint_select="/api/users/{id}?projection=userProjection"
+                    endpoint_add_or_save="/api/admin/users"
+                    formFields={rows}
                 />
         )
     }
