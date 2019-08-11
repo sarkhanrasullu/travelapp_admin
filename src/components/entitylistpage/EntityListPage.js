@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import {DataTableComponent, DynamicForm, LoadingSpinner} from '../react_multiplatform_components2';
+import {DataTableComponent, DynamicForm, LoadingSpinner} from '../react_multiplatform_components';
 import EntityService from '../../services/EntityService';
 
 class EntityListPage extends Component {
