@@ -8,7 +8,7 @@ export class MyImagesPicker extends Component {
 
     render() {
         const { error, readOnly, component, item, key } = this.props;
-        const {type, name} = item;
+        const {name} = item;
         let list = StateUtil.get(component.state, name);
         let imagePickerList = null;
         console.log(list);

@@ -8,9 +8,9 @@ const style = {
 
 export  class CheckBox extends Component {
     render(){
-        const {item, error, readOnly, component, key } = this.props;
+        const {item, error, component, key } = this.props;
         
-        const {label, type, name} = item;
+        const {name} = item;
         let currentValue = StateUtil.get(component.state, name);
         console.log(currentValue);
         currentValue = currentValue?currentValue:false;
