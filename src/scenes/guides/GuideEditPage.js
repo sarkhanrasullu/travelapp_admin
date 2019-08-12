@@ -7,7 +7,7 @@ import { SelectBox } from '../../components/react_multiplatform_components';
 const rows = [
     {
         items:[
-            new InputField("target.userId.thumbnail","Image",InputFieldType.IMAGE_URL),
+            new InputField("target.userId.thumbnail","image",InputFieldType.IMAGE_URL),
             null
         ]
     },
@@ -32,13 +32,13 @@ const rows = [
     {
         items:[
             new SelectBox("target.userId.roleId.id", "role","/api/userRoles","id","name"),
-            new InputField("target.age"),
+            new InputField("target.age","age"),
         ]
     },
     {
         items:[
             new SelectBox("target.genderId.id", "gender","/api/genders","id","name"),
-            new InputField("target.isVerified","Verified", InputFieldType.CHECK_BOX),
+            new InputField("target.isVerified","verified", InputFieldType.CHECK_BOX),
         ]
     },
     {

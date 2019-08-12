@@ -38,7 +38,7 @@ const rows = [
     {
         items:[
             new SelectBox("target.genderId.id","gender", "/api/genders","id","name"),
-            new InputField("target.isVerified","Verified", InputFieldType.CHECK_BOX),
+            new InputField("target.isVerified","verified", InputFieldType.CHECK_BOX),
         ]
     },
     {
@@ -67,7 +67,7 @@ const rows = [
     },
     {
         items:[
-            new InputField("target.about",null,InputFieldType.TEXT_AREA),
+            new InputField("target.about","about",InputFieldType.TEXT_AREA),
         ]
     }
 ]
