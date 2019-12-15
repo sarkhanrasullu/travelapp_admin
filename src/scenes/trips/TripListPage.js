@@ -1,7 +1,6 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
 import EntityListPage from '../../components/entitylistpage/EntityListPage';
-import {TableColumn, InputField} from '../../components/react_multiplatform_components';
-import { TableColumnType } from '../../components/react_multiplatform_components';
+import { InputField, TableColumn } from '../../components/react_multiplatform_components';
 
 const columns = [
     new TableColumn("id"),
@@ -10,11 +9,21 @@ const columns = [
     new TableColumn("userId.email","email"),
     new TableColumn("userId.phone","phone"),   
     new TableColumn("userId.nationalityId.name","nationality"),
-    new TableColumn("pickupDate","pickup date", TableColumnType.DATE_TIME),
-    new TableColumn("pickupTime","pickup time", TableColumnType.DATE_TIME),
+    
+    new TableColumn("pickupDate","pickup date"),
+    new TableColumn("pickupTime","pickup time"),
     new TableColumn("placeId.name","place"),
-    new TableColumn("insertDate","insert date", TableColumnType.DATE_TIME),
-    new TableColumn("lastchangedate", TableColumnType.DATE_TIME),
+
+    new TableColumn("driverId.userId.name","driver name"),
+    new TableColumn("driverId.userId.surname","driver surname"),
+    new TableColumn("driverId.userId.phone","driver phone"),   
+
+
+    new TableColumn("guideId.userId.name","guide name"),
+    new TableColumn("guideId.userId.surname","guide surname"),
+    new TableColumn("guideId.userId.phone","guide phone"),   
+
+  
 ];
 
 const fields = [

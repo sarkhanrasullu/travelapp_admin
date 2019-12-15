@@ -59,6 +59,7 @@ export enum TableColumnType {
    IMAGE_BASE64,
    DATE,
    DATE_TIME,
+   TIME
 }
 
 export class TableColumn { 

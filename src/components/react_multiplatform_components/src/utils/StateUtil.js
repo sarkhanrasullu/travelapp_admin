@@ -1,5 +1,5 @@
-import {CommonUtil} from "./CommonUtil";
 import { TableColumnType } from "../datatable/DataTableTypes";
+import { CommonUtil } from "./CommonUtil";
 
 export class StateUtil {
 
@@ -48,7 +48,7 @@ export class StateUtil {
         static renderData(row, column){
             let data = StateUtil.get(row, column.name); 
             //console.log(column);
-            //console.log(data);
+            // console.log(data);
             if(data===null) return "";
             let result = data;
             if(column.type==="empty"){
@@ -61,6 +61,8 @@ export class StateUtil {
                 result = CommonUtil.formatDate(data);
             }else if(column.type===TableColumnType.DATE_TIME){
                 result = CommonUtil.formatDateTime(data);
+            }else if(column.type===TableColumnType.TIME){
+                result = CommonUtil.formatTime(data);
             }else if( (typeof data) === "object"){
                 const objectKeys = Object.keys(data);
                 result = objectKeys.reduce((keyP, keyN)=>{

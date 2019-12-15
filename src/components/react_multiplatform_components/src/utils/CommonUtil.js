@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react';
 
 export class CommonUtil {
 
@@ -33,6 +33,7 @@ export class CommonUtil {
     }; 
 
     static formatTime = (date) => { 
+      console.log('date='+date);
       if (!date) return "";
       if(typeof date === "string") date = new Date(date);
   
@@ -40,7 +41,8 @@ export class CommonUtil {
       let minutes = date.getMinutes();
       let seconds = date.getSeconds();
       
-      const r = hours+":"+minutes+":"+seconds;
+      const r = hours+":"+minutes;
+      console.log('r='+r);
       return r;
     }; 
 
